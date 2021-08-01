@@ -1,8 +1,9 @@
-import pyrebase
-from pathlib import Path
-from PIL import Image, ImageTk
 import json
+from pathlib import Path
 from tkinter import *
+import pyrebase
+import second_page
+
 
 # Path to asset files for this GUI window.
 ASSETS_PATH = Path(__file__).resolve().parent / "assets"
@@ -14,28 +15,25 @@ firebase = pyrebase.initialize_app(firebaseConfig)
 db = firebase.database()
 auth = firebase.auth()
 
-class interface():
-    def __init__(self, window):
-        width, height=900,600
-        window.geometry('900x600')
-        window.title('Prezzi Bank')
-        frame = Frame(window, bg="#e5cdff")
-        frame.place(x=0,y=0,width=width, height=height)
+def window_sam():
+    window = Tk()
 
-        user_entry = Entry(window, bd=1)
-        user_entry.place(width=100, height=25,x=w/2-100/2,y=100)
+def main_window():
+    global w,h
+    w, h = 900, 600
 
+    window.geometry(f"{w}x{h}")
+    window.title("")
 
+    frame_login = Frame(window, bg='white')
+    frame_login.place(x=0,y=0,width=w,height=h)
+    Frame(window, bg='grey').place(x=0, y=0, width=w, height=30)
 
-
-
-
-
-
-
+    Button(frame_login, text='Second window', command=second_page.loginpage).place(x=100,y=100)
 
 
 if __name__ == '__main__':
-    window = Tk()
-    app = interface(window)
+    global window
+    window_sam()
+    main_window()
     window.mainloop()
