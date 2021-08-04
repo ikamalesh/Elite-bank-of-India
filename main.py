@@ -1,39 +1,47 @@
 import json
-from pathlib import Path
-from tkinter import *
 import pyrebase
-import second_page
-
+from constants import *
+from windows import *
 
 # Path to asset files for this GUI window.
 ASSETS_PATH = Path(__file__).resolve().parent / "assets"
 
-with open('assets/firebase.json', 'r') as c:
-    firebaseConfig = json.load(c)
-firebase = pyrebase.initialize_app(firebaseConfig)
+def firebase():
+    with open('assets/firebase.json', 'r') as c:
+        firebaseConfig = json.load(c)
+    firebase = pyrebase.initialize_app(firebaseConfig)
 
-db = firebase.database()
-auth = firebase.auth()
+    db = firebase.database()
+    auth = firebase.auth()
 
-def window_sam():
-    window = Tk()
 
-def main_window():
-    global w,h
-    w, h = 900, 600
+class Interface():
+    def __init__(self, window):
+        window.title("Rossum's Bank")
+        global logo_label
+        frame_starter = Frame(window, bg=color_darkblack)
+        frame_starter.place(x=0, y=0, width=w, height=h)
+        logo_img = logo()
+        logo_label = Label(frame_starter, image=logo_img, bd=0, bg=color_darkblack)
+        logo_label.place(x=w / 2 - 300 / 2, y=h / 2 - 300 / 2)
+        #progress_bar(frame_starter)
+        frame_starter.destroy()
+        Interface.login_window()
 
-    window.geometry(f"{w}x{h}")
-    window.title("")
+    def login_window():
+        frame_login = Frame(window, bg='white')
+        frame_login.place(x=0, y=0, width=w, height=h)
+        login_contents(frame=frame_login)
 
-    frame_login = Frame(window, bg='white')
-    frame_login.place(x=0,y=0,width=w,height=h)
-    Frame(window, bg='grey').place(x=0, y=0, width=w, height=30)
+    def about():
+        print('in about page')
 
-    Button(frame_login, text='Second window', command=second_page.loginpage).place(x=100,y=100)
+    def home():
+        print('in home page')
 
 
 if __name__ == '__main__':
-    global window
-    window_sam()
-    main_window()
+    window = Tk()
+    window.geometry(f"{w}x{h}")
+    app = Interface(window)
     window.mainloop()
