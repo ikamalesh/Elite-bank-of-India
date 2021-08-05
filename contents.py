@@ -125,6 +125,10 @@ def newaccount_contents(frame):
     Y_REF = 50
     font = ("Lato", 10)
 
+    v = StringVar()
+    def place():
+        print(v.get())
+
     Label(frame, text='First name:', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF, y=Y_REF, width=100,height=25)
     firstname = Entry(frame, bd=1, relief=SOLID, font=font)
     firstname.place(x=X_REF, y=Y_REF + 25, width=200, height=25)
@@ -132,3 +136,11 @@ def newaccount_contents(frame):
     Label(frame, text='Last name:', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF+220, y=Y_REF, width=100,height=25)
     firstname = Entry(frame, bd=1, relief=SOLID, font=font)
     firstname.place(x=X_REF+220, y=Y_REF + 25, width=200, height=25)
+
+    Label(frame, text='DOB (DD/MM/YYYY):', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF, y=Y_REF+60, width=150, height=25)
+    firstname = Entry(frame, bd=1, relief=SOLID, font=font)
+    firstname.place(x=X_REF, y=Y_REF + 60+25, width=150, height=25)
+
+    Label(frame, text='Account type', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF+220, y=Y_REF+60, width=150, height=25)
+    Radiobutton(frame, text='Savings', variable=v,font=font,bg=color_bg, value='Savings',command=place).place(x=100,y=400, width=200, height=25)
+    Radiobutton(frame, text='Current', variable=v, font=font, bg=color_bg, value='Current', command=place).place(x=100,y=400,width=200,height=25)
