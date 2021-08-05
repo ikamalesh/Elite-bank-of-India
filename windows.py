@@ -99,4 +99,3 @@ def login_contents(frame):
 
 def main_contents(frame):
     return
-
