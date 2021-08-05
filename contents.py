@@ -1,6 +1,7 @@
 from constants import *
 import app
 import logics
+
 global button_list
 
 
@@ -97,20 +98,37 @@ def main_contents(frame, frame1, frame2, name):
     topbar(frame, topbar_contents)
 
     sidebar_contents = {
-                        ' Profile':app.profile,
-                        ' Check Balance':app.check_balance,
-                        ' View Transactions': app.view_transactions,
-                        ' Online Transfer': app.online_transfer,
-                        ' Deposit': app.deposit,
-                        ' Withdraw': app.withdraw,
-                        ' Investments': app.investments,
-                        ' Personal Loans': app.personal_loans
-                        }
+        ' Profile': app.profile,
+        ' Check Balance': app.check_balance,
+        ' View Transactions': app.view_transactions,
+        ' Online Transfer': app.online_transfer,
+        ' Deposit': app.deposit,
+        ' Withdraw': app.withdraw,
+        ' Investments': app.investments,
+        ' Personal Loans': app.personal_loans
+    }
     button_list = sidebar(frame1, sidebar_contents)
 
-
-
     Label(frame, text='Welcome', font=("Lato", 10,), bg=color_bg, anchor='w').place(x=90, y=50, width=100, height=20)
-    Label(frame, text=name.title(), font=("Lato", 12, 'italic'), bg=color_bg, anchor='w',fg='purple').place(x=90, y=75, width=150,
-                                                                                                height=20)
+    Label(frame, text=name.title(), font=("Lato", 12, 'italic'), bg=color_bg, anchor='w', fg='purple').place(x=90, y=75,
+                                                                                                             width=150,
+                                                                                                             height=20)
 
+
+def newaccount_contents(frame):
+    topbar_contents = {
+        '< Back': frame.destroy, }
+
+    topbar(frame, topbar_contents)
+
+    X_REF = 50
+    Y_REF = 50
+    font = ("Lato", 10)
+
+    Label(frame, text='First name:', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF, y=Y_REF, width=100,height=25)
+    firstname = Entry(frame, bd=1, relief=SOLID, font=font)
+    firstname.place(x=X_REF, y=Y_REF + 25, width=200, height=25)
+
+    Label(frame, text='Last name:', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF+220, y=Y_REF, width=100,height=25)
+    firstname = Entry(frame, bd=1, relief=SOLID, font=font)
+    firstname.place(x=X_REF+220, y=Y_REF + 25, width=200, height=25)

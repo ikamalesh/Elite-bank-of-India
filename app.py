@@ -26,7 +26,7 @@ def init(window):
     logo_label.place(x=w / 2 - 300 / 2, y=h / 2 - 200)
     # progress_bar(frame_starter)
     frame_starter.destroy()
-    main_window(name='Mr.Kamalesh')
+    newaccount_window()
 
 
 def login_window():
@@ -34,6 +34,10 @@ def login_window():
     frame_login.place(x=0, y=0, width=w, height=h)
     login_contents(frame=frame_login)
 
+def newaccount_window():
+    frame_new = Frame(window, bg=color_bg)
+    frame_new.place(x=0, y=0, width=w, height=h)
+    newaccount_contents(frame=frame_new)
 
 def about():
     print('in about page')
