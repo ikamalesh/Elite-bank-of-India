@@ -1,17 +1,7 @@
 from constants import *
-import main
-
-
-def topbar(frame, contents):
-    top_bar = Frame(frame, bg=color_topbar)
-    top_bar.place(x=0, y=0, width=w, height=30)
-    x_ref = 10
-
-    for items in contents:
-        b = Button(frame, text=items, command=contents[items], bg=color_topbar, activebackground=color_topbar,
-                   font=("Lato", 10,), bd=0, relief=SOLID)
-        b.place(x=x_ref, y=0, width=50, height=30)
-        x_ref += 60
+import app
+import logics
+global button_list
 
 
 def login_contents(frame):
@@ -48,8 +38,8 @@ def login_contents(frame):
     color_silver = 'silver'
     frame.bind("<Button-1>", frame_event)
 
-    topbar_contents = {'About': main.Interface.about,
-                       'Home': main.Interface.home}
+    topbar_contents = {'About': app.about,
+                       'Help': app.home}
     logo_img = logo(230, file='transparent2.png')
     logo_label = Label(frame, image=logo_img, bd=0, bg=color_bg)
     logo_label.place(x=w / 2 - 230 / 2, y=25)
@@ -97,5 +87,30 @@ def login_contents(frame):
     button_newaccount.place(width=250, height=25, x=w / 2 - 250 / 2, y=450)
 
 
-def main_contents(frame):
-    return
+def main_contents(frame, frame1, frame2, name):
+    global button_list
+    topbar_contents = {'About': '',
+                       'Settings': '',
+                       'Help': '',
+                       'Logout': '',
+                       }
+    topbar(frame, topbar_contents)
+
+    sidebar_contents = {
+                        ' Profile':app.profile,
+                        ' Check Balance':app.check_balance,
+                        ' View Transactions': app.view_transactions,
+                        ' Online Transfer': app.online_transfer,
+                        ' Deposit': app.deposit,
+                        ' Withdraw': app.withdraw,
+                        ' Investments': app.investments,
+                        ' Personal Loans': app.personal_loans
+                        }
+    button_list = sidebar(frame1, sidebar_contents)
+
+
+
+    Label(frame, text='Welcome', font=("Lato", 10,), bg=color_bg, anchor='w').place(x=90, y=50, width=100, height=20)
+    Label(frame, text=name.title(), font=("Lato", 12, 'italic'), bg=color_bg, anchor='w',fg='purple').place(x=90, y=75, width=150,
+                                                                                                height=20)
+
