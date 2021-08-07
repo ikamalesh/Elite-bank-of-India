@@ -5,7 +5,6 @@ from tkinter import *
 from tkinter import filedialog
 from PIL import Image, ImageTk
 
-
 button_list = {}
 
 ASSETS_PATH = Path(__file__).resolve().parent / "assets"
@@ -28,9 +27,9 @@ def logo(width, file):
 
 
 def progress_bar(frame):
-    style = Style()
-    style.theme_use('alt')
-    style.configure("green.Horizontal.TProgressbar", background=color_logogreen)
+    #style = Style()
+    #style.theme_use('alt')
+    #style.configure("Horizontal.TProgressbar", background=color_logogreen)
 
     progress = Progressbar(frame, orient=HORIZONTAL,
                            length=300, mode='determinate', style="green.Horizontal.TProgressbar")
@@ -64,7 +63,7 @@ def sidebar(frame, contents):
         y_ref += 36
         button_list[items] = b
 
+
 def all_normal(button_list):
     for button in list(button_list.values()):
         button.config(bg=color_topbar)
-
