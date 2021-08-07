@@ -9,40 +9,41 @@ global button_list
 
 def login_contents(frame):
     def frame_event(e):
-        if e1.get() == '' or e1.get() == ' Account Number':
-            e1.delete(0, END)
-            e1.insert(0, ' Account Number')
-            e1.config(fg=color_silver, insertbackground='white')
-        if e2.get() == '' or e2.get() == ' Password':
-            e2.delete(0, END)
-            e2.insert(0, ' Password')
-            e2.config(fg=color_silver, insertbackground='white')
+        if login_accountnumber_entry.get() == '' or login_accountnumber_entry.get() == ' Account Number':
+            login_accountnumber_entry.delete(0, END)
+            login_accountnumber_entry.insert(0, ' Account Number')
+            login_accountnumber_entry.config(fg=color_silver, insertbackground='white')
+        if login_password_entry.get() == '' or login_password_entry.get() == ' Password':
+            login_password_entry.delete(0, END)
+            login_password_entry.insert(0, ' Password')
+            login_password_entry.config(fg=color_silver, insertbackground='white')
 
     def event_in_1(e):
-        if e1.get() == ' Account Number':
-            e1.delete(0, END)
-            e1.config(fg='black', insertbackground='black')
+        if login_accountnumber_entry.get() == ' Account Number':
+            login_accountnumber_entry.delete(0, END)
+            login_accountnumber_entry.config(fg='black', insertbackground='black')
 
     def event_out_1(e):
-        if e1.get() == '':
-            e1.insert(0, ' Account Number')
-            e1.config(fg=color_silver, insertbackground='white')
+        if login_accountnumber_entry.get() == '':
+            login_accountnumber_entry.insert(0, ' Account Number')
+            login_accountnumber_entry.config(fg=color_silver, insertbackground='white')
 
     def event_in_2(e):
-        if e2.get() == ' Password':
-            e2.delete(0, END)
-            e2.config(fg='black', insertbackground='black')
+        if login_password_entry.get() == ' Password':
+            login_password_entry.delete(0, END)
+            login_password_entry.config(fg='black', insertbackground='black')
 
     def event_out_2(e):
-        if e2.get() == '':
-            e2.insert(0, ' Password')
-            e2.config(fg=color_silver)
+        if login_password_entry.get() == '':
+            login_password_entry.insert(0, ' Password')
+            login_password_entry.config(fg=color_silver)
 
     color_silver = 'silver'
     frame.bind("<Button-1>", frame_event)
 
     topbar_contents = {'About': App.about,
                        'Help': App.home}
+    global logo_img
     logo_img = logo(230, file='transparent2.png')
     logo_label = Label(frame, image=logo_img, bd=0, bg=color_bg)
     logo_label.place(x=w / 2 - 230 / 2, y=25)
@@ -52,23 +53,25 @@ def login_contents(frame):
 
     e1_frame = Frame(frame, bg='silver')
     e1_frame.place(x=w / 2 - 250 / 2 - 1, y=Y_REF - 1, width=252, height=27)
-    e1 = Entry(frame, bd=0, insertbackground='white', font=("Lato", 10,))
-    e1.place(x=w / 2 - 250 / 2, y=Y_REF, width=250, height=25)
-    e1.bind('<FocusIn>', event_in_1)
-    e1.bind('<FocusOut>', event_out_1)
-    e1.bind("<Button-1>", event_in_1)
-    e1.insert(0, ' Account Number')
-    e1.config(fg=color_silver)
+
+    login_accountnumber_entry = Entry(frame, bd=0, insertbackground='white', font=("Lato", 10,))
+    login_accountnumber_entry.place(x=w / 2 - 250 / 2, y=Y_REF, width=250, height=25)
+    login_accountnumber_entry.bind('<FocusIn>', event_in_1)
+    login_accountnumber_entry.bind('<FocusOut>', event_out_1)
+    login_accountnumber_entry.bind("<Button-1>", event_in_1)
+    login_accountnumber_entry.insert(0, ' Account Number')
+    login_accountnumber_entry.config(fg=color_silver)
 
     e2_frame = Frame(frame, bg='silver')
     e2_frame.place(x=w / 2 - 250 / 2 - 1, y=Y_REF + 40 - 1, width=252, height=27)
-    e2 = Entry(frame, bd=0, insertbackground='white', font=("Lato", 10,))
-    e2.place(x=w / 2 - 250 / 2, y=Y_REF + 40, width=250, height=25)
-    e2.bind('<FocusIn>', event_in_2)
-    e2.bind('<FocusOut>', event_out_2)
-    e2.bind("<Button-1>", event_in_2)
-    e2.insert(0, ' Password')
-    e2.config(fg=color_silver)
+
+    login_password_entry = Entry(frame, bd=0, insertbackground='white', font=("Lato", 10,))
+    login_password_entry.place(x=w / 2 - 250 / 2, y=Y_REF + 40, width=250, height=25)
+    login_password_entry.bind('<FocusIn>', event_in_2)
+    login_password_entry.bind('<FocusOut>', event_out_2)
+    login_password_entry.bind("<Button-1>", event_in_2)
+    login_password_entry.insert(0, ' Password')
+    login_password_entry.config(fg=color_silver)
 
     button_login = Button(frame, bd=0, text='Log in', bg='#175C4C', fg='white', activebackground='#1B6A58',
                           activeforeground='white', font=("Lato", 10, 'bold'))
@@ -118,101 +121,8 @@ def main_contents(frame, frame1, frame2, name):
 
 
 def newaccount_contents(frame):
-    subframe = Frame(frame, bg=color_bg, bd=1, relief=SOLID)
-    subframe.place(x=30, y=(h + 30) / 2 - 500 / 2, width=440, height=500)
+    global logo_img
 
-    logo_img = logo(200, file='transparent2.png')
-    logo_label = Label(frame, image=logo_img, bd=0, bg=color_bg)
-    logo_label.place(x=(w + 30 + 440) / 2 - 200 / 2, y=100)
-
-    Label(frame, text="Let's make money\nsimple", font=("times", 20),bg=color_bg).place(x=(w + 30 + 440) / 2 - 250 / 2, y=70 + 250,
-                                                                           width=250)
-
-    topbar_contents = {'< Back': frame.destroy, }
-
-    topbar(frame, topbar_contents)
-
-    X_REF = 10
-    Y_REF = 10
-    font = ("Lato", 10)
-
-    accounttype = StringVar(value='Savings')
-    gender = StringVar(value=1)
-    nationality = StringVar()
-    kyc = StringVar()
-
-    def place():
-        print(accounttype.get())
-
-    def checkgender():
-        print(gender.get())
-
-    ######
-    Label(subframe, text='First name', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF, y=Y_REF, width=100,
-                                                                                            height=25)
-    firstname = Entry(subframe, bd=1, relief=SOLID, font=font)
-    firstname.place(x=X_REF, y=Y_REF + 25, width=200, height=25)
-
-    ######
-    Label(subframe, text='Last name', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF + 220, y=Y_REF,
-                                                                                           width=100, height=25)
-    lastname = Entry(subframe, bd=1, relief=SOLID, font=font)
-    lastname.place(x=X_REF + 220, y=Y_REF + 25, width=200, height=25)
-
-    ######
-    Label(subframe, text='DOB (DD/MM/YYYY)', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF, y=Y_REF + 60,
-                                                                                                  width=150, height=25)
-    dob = Entry(subframe, bd=1, relief=SOLID, font=font)
-    dob.place(x=X_REF, y=Y_REF + 60 + 25, width=200, height=25)
-
-    ######
-    Label(subframe, text='Account type', font=font, bg=color_bg, anchor='w', fg='grey', ).place(x=X_REF + 220,
-                                                                                                y=Y_REF + 60, width=150,
-                                                                                                height=25)
-    Radiobutton(subframe, text='Savings', variable=accounttype, font=font, bg=color_bg, value='Savings', command=place,
-                activebackground=color_bg, anchor='w').place(x=X_REF + 220, y=Y_REF + 60 + 25, width=100, height=25)
-    Radiobutton(subframe, text='Current', variable=accounttype, font=font, bg=color_bg, value='Current', command=place,
-                activebackground=color_bg).place(x=X_REF + 320, y=Y_REF + 60 + 25, width=100, height=25)
-
-    ######
-    Label(subframe, text='Mobile number', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF, y=Y_REF + 120,
-                                                                                               width=150, height=25)
-    mobile = Entry(subframe, bd=1, relief=SOLID, font=font)
-    mobile.place(x=X_REF, y=Y_REF + 120 + 25, width=200, height=25)
-
-    ######
-    Label(subframe, text='Email', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF + 220, y=Y_REF + 120,
-                                                                                       width=100, height=25)
-    email = Entry(subframe, bd=1, relief=SOLID, font=font)
-    email.place(x=X_REF + 220, y=Y_REF + 120 + 25, width=200, height=25)
-
-    ######
-    Label(subframe, text='Gender', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF, y=Y_REF + 180,
-                                                                                        width=150, height=25)
-    male = Radiobutton(subframe, text='Male', variable=gender, font=font, bg=color_bg, value='Male',
-                       activebackground=color_bg, anchor='w', command=checkgender)
-    male.place(x=X_REF, y=Y_REF + 180 + 25, width=100, height=25)
-    female = Radiobutton(subframe, text='Female', variable=gender, font=font, bg=color_bg, value='Female',
-                         activebackground=color_bg, command=checkgender)
-    female.place(x=X_REF + 100, y=Y_REF + 180 + 25, width=100, height=25)
-
-    #####
-    Label(subframe, text='Nationality', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF + 220,
-                                                                                             y=Y_REF + 180,
-                                                                                             width=100, height=25)
-    nation = Combobox(subframe, width=27, textvariable=nationality, state="readonly", font=font)
-    nation['values'] = (' India', ' Sri Lanka', ' Bangladesh')
-    nation["background"] = '#ff0000'
-    nation.place(x=X_REF + 220, y=Y_REF + 180 + 25, width=200, height=25)
-
-    #####
-    Label(subframe, text='Address', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF, y=Y_REF + 240,
-                                                                                         width=100,
-                                                                                         height=25)
-    address = Entry(subframe, bd=1, relief=SOLID, font=font)
-    address.place(x=X_REF, y=Y_REF + 240 + 25, width=420, height=25)
-
-    #####
     def pincode_event(e):
         pin = pincode.get()
         csv_file = csv.reader(open('india.csv', "r"), delimiter=",")
@@ -227,51 +137,10 @@ def newaccount_contents(frame):
                 district.config(state=DISABLED)
                 state.config(state=DISABLED)
 
-    Label(subframe, text='Pincode', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF, y=Y_REF + 300,
-                                                                                         width=100,
-                                                                                         height=25)
-    pincode = Entry(subframe, bd=1, relief=SOLID, font=font)
-    pincode.place(x=X_REF, y=Y_REF + 300 + 25, width=100, height=25)
-    pincode.bind("<FocusOut>", pincode_event)
-    #####
-    Label(subframe, text='District', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF + 110, y=Y_REF + 300,
-                                                                                          width=100,
-                                                                                          height=25)
-    district = Entry(subframe, bd=1, relief=SOLID, font=font, state=DISABLED, disabledbackground="white",
-                     disabledforeground="black")
-    district.place(x=X_REF + 110, y=Y_REF + 300 + 25, width=150, height=25)
-
-    #####
-    Label(subframe, text='State', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF + 270, y=Y_REF + 300,
-                                                                                       width=100, height=25)
-    state = Entry(subframe, bd=1, relief=SOLID, font=font, state=DISABLED, disabledbackground="white",
-                  disabledforeground="black")
-    state.place(x=X_REF + 270, y=Y_REF + 300 + 25, width=150, height=25)
-
-    #####
-    Label(subframe, text='KYC Document', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF, y=Y_REF + 360,
-                                                                                              width=100,
-                                                                                              height=25)
-    kyc_combo = Combobox(subframe, width=27, textvariable=kyc, state="readonly", font=font)
-    kyc_combo['values'] = (' Aadhaar Card', ' Passport', ' Driving License')
-    kyc_combo["background"] = '#ff0000'
-    kyc_combo.place(x=X_REF, y=Y_REF + 360 + 25, width=150, height=25)
-
     def file():
         global filename
         filename = filedialog.askopenfile(initialdir="/", title='Select a file', filetypes=(('PDF files', '*.pdf'),))
-        print(filename.name)
-
-    upload = Button(subframe, text='Upload', bd=1, relief=SOLID, command=file)
-    upload.place(x=X_REF + 160, y=Y_REF + 360 + 25, width=50, height=25)
-
-    #####
-    Label(subframe, text='Reference No.', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF + 240,
-                                                                                               y=Y_REF + 360,
-                                                                                               width=180, height=25)
-    refno = Entry(subframe, bd=1, relief=SOLID, font=font, disabledbackground="white",
-                  disabledforeground="black")
-    refno.place(x=X_REF + 240, y=Y_REF + 360 + 25, width=180, height=25)
+        filename = filename.name
 
     def submit_button():
         operations.signup(
@@ -291,6 +160,111 @@ def newaccount_contents(frame):
             filename,
             accounttype.get(),
         )
+    subframe = Frame(frame, bg=color_bg, bd=1, relief=SOLID)
+    subframe.place(x=30, y=(h + 30) / 2 - 500 / 2, width=440, height=500)
 
-    submit = Button(subframe, text='Sign up', bd=1, relief=SOLID, command=submit_button)
-    submit.place(x=440 / 2 - 100 / 2, y=Y_REF + 420 + 25, width=100, height=25)
+    logo_img = logo(200, file='transparent2.png')
+    logo_label = Label(frame, image=logo_img, bd=0, bg=color_bg)
+    logo_label.place(x=(w + 30 + 440) / 2 - 200 / 2, y=100)
+    Label(frame, text="Let's make money\nsimple", font=("times", 20), bg=color_bg).place(x=(w + 30 + 440) / 2 - 250 / 2,
+                                                                                         y=70 + 250,
+                                                                                         width=250)
+
+    topbar_contents = {'< Back': frame.destroy, }
+    topbar(frame, topbar_contents)
+
+    X_REF = 10
+    Y_REF = 10
+    font = ("Lato", 10)
+
+    accounttype = StringVar(value='Savings')
+    gender = StringVar(value=1)
+    nationality = StringVar()
+    kyc = StringVar()
+
+    ######LABELS
+    l_firstname = Label(subframe, text='First name', font=font, bg=color_bg, anchor='w', fg='grey')
+    l_lastname = Label(subframe, text='Last name', font=font, bg=color_bg, anchor='w', fg='grey')
+    l_dob = Label(subframe, text='DOB (DD/MM/YYYY)', font=font, bg=color_bg, anchor='w', fg='grey')
+    l_acctype = Label(subframe, text='Account type', font=font, bg=color_bg, anchor='w', fg='grey', )
+    l_mobile = Label(subframe, text='Mobile number', font=font, bg=color_bg, anchor='w', fg='grey')
+    l_email = Label(subframe, text='Email', font=font, bg=color_bg, anchor='w', fg='grey')
+    l_gender = Label(subframe, text='Gender', font=font, bg=color_bg, anchor='w', fg='grey')
+    l_nationality = Label(subframe, text='Nationality', font=font, bg=color_bg, anchor='w', fg='grey')
+    l_address = Label(subframe, text='Address', font=font, bg=color_bg, anchor='w', fg='grey')
+    l_pincode = Label(subframe, text='Pincode', font=font, bg=color_bg, anchor='w', fg='grey')
+    l_district = Label(subframe, text='District', font=font, bg=color_bg, anchor='w', fg='grey')
+    l_state = Label(subframe, text='State', font=font, bg=color_bg, anchor='w', fg='grey')
+    l_kyc = Label(subframe, text='KYC Document', font=font, bg=color_bg, anchor='w', fg='grey')
+    l_refno = Label(subframe, text='Reference No.', font=font, bg=color_bg, anchor='w', fg='grey')
+
+    ######LABELS PLACE
+    l_firstname.place(x=X_REF, y=Y_REF, width=100, height=25)
+    l_lastname.place(x=X_REF + 220, y=Y_REF, width=100, height=25)
+    l_dob.place(x=X_REF, y=Y_REF + 60, width=150, height=25)
+    l_acctype.place(x=X_REF + 220, y=Y_REF + 60, width=150, height=25)
+    l_mobile.place(x=X_REF, y=Y_REF + 120, width=150, height=25)
+    l_email.place(x=X_REF + 220, y=Y_REF + 120, width=100, height=25)
+    l_gender.place(x=X_REF, y=Y_REF + 180, width=150, height=25)
+    l_nationality.place(x=X_REF + 220, y=Y_REF + 180, width=100, height=25)
+    l_address.place(x=X_REF, y=Y_REF + 240, width=100, height=25)
+    l_pincode.place(x=X_REF, y=Y_REF + 300, width=100, height=25)
+    l_district.place(x=X_REF + 110, y=Y_REF + 300, width=100, height=25)
+    l_state.place(x=X_REF + 270, y=Y_REF + 300, width=100, height=25)
+    l_kyc.place(x=X_REF, y=Y_REF + 360, width=100, height=25)
+    l_refno.place(x=X_REF + 240, y=Y_REF + 360, width=180, height=25)
+
+    ######ENTRIES
+    firstname = Entry(subframe, bd=1, relief=SOLID, font=font)
+    lastname = Entry(subframe, bd=1, relief=SOLID, font=font)
+    dob = Entry(subframe, bd=1, relief=SOLID, font=font)
+    acctype1 = Radiobutton(subframe, text='Savings', variable=accounttype, font=font, bg=color_bg, value='Savings',
+                           activebackground=color_bg, anchor='w')
+    acctype2 = Radiobutton(subframe, text='Current', variable=accounttype, font=font, bg=color_bg, value='Current',
+                           activebackground=color_bg)
+    mobile = Entry(subframe, bd=1, relief=SOLID, font=font)
+    email = Entry(subframe, bd=1, relief=SOLID, font=font)
+    gender1 = Radiobutton(subframe, text='Male', variable=gender, font=font, bg=color_bg, value='Male',
+                          activebackground=color_bg, anchor='w')
+    gender2 = Radiobutton(subframe, text='Female', variable=gender, font=font, bg=color_bg, value='Female',
+                          activebackground=color_bg)
+    nation = Combobox(subframe, width=27, textvariable=nationality, state="readonly", font=font)
+    nation['values'] = (' India', ' Sri Lanka', ' Bangladesh')
+    nation["background"] = '#ff0000'
+    address = Entry(subframe, bd=1, relief=SOLID, font=font)
+    pincode = Entry(subframe, bd=1, relief=SOLID, font=font)
+    pincode.bind("<FocusOut>", pincode_event)
+    district = Entry(subframe, bd=1, relief=SOLID, font=font, state=DISABLED, disabledbackground="white",
+                     disabledforeground="black")
+    state = Entry(subframe, bd=1, relief=SOLID, font=font, state=DISABLED, disabledbackground="white",
+                  disabledforeground="black")
+    kyc_combo = Combobox(subframe, width=27, textvariable=kyc, state="readonly", font=font)
+    kyc_combo['values'] = (' Aadhaar Card', ' Passport', ' Driving License')
+    kyc_combo["background"] = '#ff0000'
+    refno = Entry(subframe, bd=1, relief=SOLID, font=font, disabledbackground="white",
+                  disabledforeground="black")
+
+    ######ENTRIES PLACE
+    firstname.place(x=X_REF, y=Y_REF + 25, width=200, height=25)
+    lastname.place(x=X_REF + 220, y=Y_REF + 25, width=200, height=25)
+    dob.place(x=X_REF, y=Y_REF + 60 + 25, width=200, height=25)
+    acctype1.place(x=X_REF + 220, y=Y_REF + 60 + 25, width=100, height=25), acctype2.place(x=X_REF + 320,
+                                                                                           y=Y_REF + 60 + 25, width=100,
+                                                                                           height=25)
+    mobile.place(x=X_REF, y=Y_REF + 120 + 25, width=200, height=25)
+    email.place(x=X_REF + 220, y=Y_REF + 120 + 25, width=200, height=25)
+    gender1.place(x=X_REF, y=Y_REF + 180 + 25, width=100, height=25), gender2.place(x=X_REF + 100, y=Y_REF + 180 + 25,
+                                                                                    width=100, height=25)
+    nation.place(x=X_REF + 220, y=Y_REF + 180 + 25, width=200, height=25)
+    address.place(x=X_REF, y=Y_REF + 240 + 25, width=420, height=25)
+    pincode.place(x=X_REF, y=Y_REF + 300 + 25, width=100, height=25)
+    district.place(x=X_REF + 110, y=Y_REF + 300 + 25, width=150, height=25)
+    state.place(x=X_REF + 270, y=Y_REF + 300 + 25, width=150, height=25)
+    kyc_combo.place(x=X_REF, y=Y_REF + 360 + 25, width=150, height=25)
+    refno.place(x=X_REF + 240, y=Y_REF + 360 + 25, width=180, height=25)
+
+    upload = Button(subframe, text='Upload', bd=1, relief=SOLID, command=file)
+    upload.place(x=X_REF + 160, y=Y_REF + 360 + 25, width=50, height=25)
+
+    signup_button = Button(subframe, text='Sign up', bd=1, relief=SOLID, command=submit_button)
+    signup_button.place(x=440 / 2 - 100 / 2, y=Y_REF + 420 + 25, width=100, height=25)

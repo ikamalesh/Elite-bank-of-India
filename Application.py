@@ -1,14 +1,12 @@
-from operations import *
+import operations
 from constants import *
 import contents
 
-global window
+
+
 
 # Path to asset files for this GUI window.
 ASSETS_PATH = Path(__file__).resolve().parent / "assets"
-
-
-
 
 
 class App():
@@ -72,7 +70,7 @@ class App():
         all_normal(button_list)
         button_list[' Personal Loans'].config(bg=color_bg)
 
-    def main_window(name):
+    def main_window(self, name):
         frame_main = Frame(window, bg=color_bg)
         frame_main.place(x=0, y=0, width=w, height=h)
 

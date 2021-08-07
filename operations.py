@@ -1,7 +1,6 @@
 import json
 import pyrebase
 
-
 with open('assets/firebase.json', 'r') as c:
     firebaseConfig = json.load(c)
 firebase = pyrebase.initialize_app(firebaseConfig)
@@ -28,4 +27,4 @@ def signup(firstname, lastname, dob, gender, address, district, state, pincode, 
         "kyc_upload":kyc_upload,
         "account_type":account_type
     }
-    db.child('account_requests').child(19342).push(data)
+    db.child('user_requests').set(data)
