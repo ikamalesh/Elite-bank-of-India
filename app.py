@@ -1,10 +1,12 @@
 import json
 import pyrebase
 from constants import *
-from contents import *
+import contents2
+import contents1
 
 # Path to asset files for this GUI window.
 ASSETS_PATH = Path(__file__).resolve().parent / "assets"
+
 
 
 def firebase():
@@ -16,28 +18,31 @@ def firebase():
     auth = firebase.auth()
 
 
-def init(window):
-    window.title("Rossum's Bank")
-    global logo_label
-    frame_starter = Frame(window, bg=color_topbar)
-    frame_starter.place(x=0, y=0, width=w, height=h)
-    logo_img = logo(300, file='transparent2.png')
-    logo_label = Label(frame_starter, image=logo_img, bd=0, bg=color_topbar)
-    logo_label.place(x=w / 2 - 300 / 2, y=h / 2 - 200)
-    # progress_bar(frame_starter)
-    frame_starter.destroy()
-    newaccount_window()
+class Interface():
+    def __init__(self, window):
+        window.title("Rossum's Bank")
+        global logo_label
+        frame_starter = Frame(window, bg=color_topbar)
+        frame_starter.place(x=0, y=0, width=w, height=h)
+        logo_img = logo(300, file='transparent2.png')
+        logo_label = Label(frame_starter, image=logo_img, bd=0, bg=color_topbar)
+        logo_label.place(x=w / 2 - 300 / 2, y=h / 2 - 200)
+        #progress_bar(frame_starter)
+        frame_starter.destroy()
+        Interface.login_window()
 
 
-def login_window():
-    frame_login = Frame(window, bg=color_bg)
-    frame_login.place(x=0, y=0, width=w, height=h)
-    login_contents(frame=frame_login)
+    def login_window():
+        #frame_login = Frame(window, bg=color_bg)
+        #frame_login.place(x=0, y=0, width=w, height=h)
+        contents1.login_contents(frame=window)
 
-def newaccount_window():
-    frame_new = Frame(window, bg=color_bg)
-    frame_new.place(x=0, y=0, width=w, height=h)
-    newaccount_contents(frame=frame_new)
+    def newaccount_window():
+
+        #frame_new = Frame(window, bg=color_bg)
+        #frame_new.place(x=0, y=0, width=w, height=h)
+        contents2.newaccount_contents(frame=window)
+
 
 def about():
     print('in about page')
@@ -50,6 +55,7 @@ def home():
 def profile():
     all_normal(button_list)
     button_list[' Profile'].config(bg=color_bg)
+
 
 def check_balance():
     all_normal(button_list)
@@ -96,8 +102,6 @@ def main_window(name):
     frame_left = Frame(window, bg=color_logogreen)
     frame_left.place(x=0, y=120, width=230, height=h - 120)
 
-
-
     logo_img = logo(90, file='transparent2.png')
     logo_label = Label(frame_main, image=logo_img, bd=0, bg=color_bg)
     logo_label.place(x=0, y=30)
@@ -109,5 +113,5 @@ if __name__ == '__main__':
     window = Tk()
     window.geometry(f"{w}x{h}")
     window.resizable(0, 0)
-    init(window)
+    Interface(window)
     window.mainloop()

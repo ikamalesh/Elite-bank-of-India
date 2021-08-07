@@ -1,6 +1,7 @@
 from constants import *
+import contents2
 import app
-import logics
+
 
 global button_list
 
@@ -84,7 +85,7 @@ def login_contents(frame):
     button_forget.place(width=250, height=25, x=w / 2 - 250 / 2, y=420)
 
     button_newaccount = Button(frame, text='Create a new account', font=("Lato", 10,), bd=0, bg=color_bg,
-                               activebackground=color_bg, fg='#3A89ED')
+                               activebackground=color_bg, fg='#3A89ED',command=app.Interface.newaccount_window)
     button_newaccount.place(width=250, height=25, x=w / 2 - 250 / 2, y=450)
 
 
@@ -115,32 +116,3 @@ def main_contents(frame, frame1, frame2, name):
                                                                                                              height=20)
 
 
-def newaccount_contents(frame):
-    topbar_contents = {
-        '< Back': frame.destroy, }
-
-    topbar(frame, topbar_contents)
-
-    X_REF = 50
-    Y_REF = 50
-    font = ("Lato", 10)
-
-    v = StringVar()
-    def place():
-        print(v.get())
-
-    Label(frame, text='First name:', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF, y=Y_REF, width=100,height=25)
-    firstname = Entry(frame, bd=1, relief=SOLID, font=font)
-    firstname.place(x=X_REF, y=Y_REF + 25, width=200, height=25)
-
-    Label(frame, text='Last name:', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF+220, y=Y_REF, width=100,height=25)
-    firstname = Entry(frame, bd=1, relief=SOLID, font=font)
-    firstname.place(x=X_REF+220, y=Y_REF + 25, width=200, height=25)
-
-    Label(frame, text='DOB (DD/MM/YYYY):', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF, y=Y_REF+60, width=150, height=25)
-    firstname = Entry(frame, bd=1, relief=SOLID, font=font)
-    firstname.place(x=X_REF, y=Y_REF + 60+25, width=150, height=25)
-
-    Label(frame, text='Account type', font=font, bg=color_bg, anchor='w', fg='grey').place(x=X_REF+220, y=Y_REF+60, width=150, height=25)
-    Radiobutton(frame, text='Savings', variable=v,font=font,bg=color_bg, value='Savings',command=place).place(x=100,y=400, width=200, height=25)
-    Radiobutton(frame, text='Current', variable=v, font=font, bg=color_bg, value='Current', command=place).place(x=100,y=400,width=200,height=25)

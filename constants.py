@@ -1,7 +1,8 @@
 from time import sleep
 from pathlib import Path
-from tkinter.ttk import Progressbar, Style
+from tkinter.ttk import Progressbar, Style, Combobox
 from tkinter import *
+from tkinter import filedialog
 from PIL import Image, ImageTk
 
 

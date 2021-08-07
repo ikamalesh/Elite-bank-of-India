@@ -3,7 +3,7 @@ import csv
 
 
 number = input('Enter number to find\n')
-csv_file = csv.reader(open('pincodes.csv', "r"), delimiter=",")
+csv_file = csv.reader(open('india.csv', "r"), delimiter=",")
 
 
 #loop through the csv list
