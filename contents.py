@@ -1,11 +1,8 @@
 from constants import *
-import contents2
 from Application import *
-import csv
 import operations
 
 global button_list
-
 
 def login_contents(frame):
     def frame_event(e):
@@ -43,10 +40,10 @@ def login_contents(frame):
 
     topbar_contents = {'About': App.about,
                        'Help': App.home}
-    global logo_img
-    logo_img = logo(230, file='transparent2.png')
-    logo_label = Label(frame, image=logo_img, bd=0, bg=color_bg)
-    logo_label.place(x=w / 2 - 230 / 2, y=25)
+    global logo_img1, logo_label1
+    logo_img1 = logo(230, file='transparent2.png')
+    logo_label1 = Label(frame, image=logo_img1, bd=0, bg=color_bg)
+    logo_label1.place(x=w / 2 - 230 / 2, y=25)
     topbar(frame, topbar_contents)
 
     Y_REF = 250
@@ -121,7 +118,7 @@ def main_contents(frame, frame1, frame2, name):
 
 
 def newaccount_contents(frame):
-    global logo_img
+    global logo_img,logo_label
 
     def pincode_event(e):
         pin = pincode.get()
@@ -160,6 +157,7 @@ def newaccount_contents(frame):
             filename,
             accounttype.get(),
         )
+
     subframe = Frame(frame, bg=color_bg, bd=1, relief=SOLID)
     subframe.place(x=30, y=(h + 30) / 2 - 500 / 2, width=440, height=500)
 
@@ -178,7 +176,7 @@ def newaccount_contents(frame):
     font = ("Lato", 10)
 
     accounttype = StringVar(value='Savings')
-    gender = StringVar(value=1)
+    gender = StringVar(value=None)
     nationality = StringVar()
     kyc = StringVar()
 
@@ -268,3 +266,4 @@ def newaccount_contents(frame):
 
     signup_button = Button(subframe, text='Sign up', bd=1, relief=SOLID, command=submit_button)
     signup_button.place(x=440 / 2 - 100 / 2, y=Y_REF + 420 + 25, width=100, height=25)
+

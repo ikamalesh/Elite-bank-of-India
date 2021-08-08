@@ -1,8 +1,5 @@
-import operations
 from constants import *
 import contents
-
-
 
 
 # Path to asset files for this GUI window.
@@ -12,7 +9,7 @@ ASSETS_PATH = Path(__file__).resolve().parent / "assets"
 class App():
     def __init__(self, window):
         window.title("Rossum's Bank")
-        global logo_label
+        global logo_label,logo_img
         frame_starter = Frame(window, bg=color_topbar)
         frame_starter.place(x=0, y=0, width=w, height=h)
         logo_img = logo(300, file='transparent2.png')
@@ -20,7 +17,7 @@ class App():
         logo_label.place(x=w / 2 - 300 / 2, y=h / 2 - 200)
         # progress_bar(frame_starter)
         frame_starter.destroy()
-        App.login_window(window)
+        App.newaccount_window(window)
 
     def login_window(self):
         frame_login = Frame(self, bg=color_bg)
@@ -28,6 +25,7 @@ class App():
         contents.login_contents(frame=window)
 
     def newaccount_window(self):
+        window.title("Rossum's Bank | New Account")
         frame_new = Frame(self, bg=color_bg)
         frame_new.place(x=0, y=0, width=w, height=h)
         contents.newaccount_contents(frame=frame_new)
