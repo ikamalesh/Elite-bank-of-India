@@ -1,8 +1,8 @@
-from constants import *
-from Application import *
 import operations
+from Application import *
 
 global button_list
+
 
 def login_contents(frame):
     def frame_event(e):
@@ -118,7 +118,7 @@ def main_contents(frame, frame1, frame2, name):
 
 
 def newaccount_contents(frame):
-    global logo_img,logo_label
+    global logo_img, logo_label,l_error
 
     def pincode_event(e):
         pin = pincode.get()
@@ -140,7 +140,7 @@ def newaccount_contents(frame):
         filename = filename.name
 
     def submit_button():
-        operations.signup(
+        operations.signup(l_error,
             firstname.get(),
             lastname.get(),
             dob.get(),
@@ -176,7 +176,7 @@ def newaccount_contents(frame):
     font = ("Lato", 10)
 
     accounttype = StringVar(value='Savings')
-    gender = StringVar(value=None)
+    gender = StringVar(value='None')
     nationality = StringVar()
     kyc = StringVar()
 
@@ -267,3 +267,6 @@ def newaccount_contents(frame):
     signup_button = Button(subframe, text='Sign up', bd=1, relief=SOLID, command=submit_button)
     signup_button.place(x=440 / 2 - 100 / 2, y=Y_REF + 420 + 25, width=100, height=25)
 
+    ######
+    l_error = Label(frame, text="",fg='red')
+    l_error.place(x=(w + 30 + 440) / 2 - 250 / 2, y=70 + 250+100, width=250)

@@ -17,7 +17,7 @@ class App():
         logo_label.place(x=w / 2 - 300 / 2, y=h / 2 - 200)
         # progress_bar(frame_starter)
         frame_starter.destroy()
-        App.newaccount_window(window)
+        App.login_window(window)
 
     def login_window(self):
         frame_login = Frame(self, bg=color_bg)
@@ -25,7 +25,7 @@ class App():
         contents.login_contents(frame=window)
 
     def newaccount_window(self):
-        window.title("Rossum's Bank | New Account")
+        self.title("Rossum's Bank | New Account")
         frame_new = Frame(self, bg=color_bg)
         frame_new.place(x=0, y=0, width=w, height=h)
         contents.newaccount_contents(frame=frame_new)
