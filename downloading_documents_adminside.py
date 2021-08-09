@@ -13,18 +13,11 @@ config = {
 firebase = pyrebase.initialize_app(config)
 
 db = firebase.database()
+auth = firebase.auth()
+storage = firebase.storage()
+user = auth.sign_in_anonymous()
+#print(user['idToken'])
 
-data = {'35712': 'srikamalesh<dot>2001@gmail<dot>com'}
-#v = db.child('map').set(data)
 
-account = input('>>> ')
-try:
-    account = int(account)
-    v0 = db.child('map').child(account).get().val()
-    v = dict(db.child('users').child(v0).get().val())
-    print(v)
-
-except ValueError:
-    account = account.replace('.','<dot>')
-    v = dict(db.child('users').child(account).get().val())
-    print(v)
+f = storage.child('account_requests').child('IVBXW').get_url(token='')
+print(f)

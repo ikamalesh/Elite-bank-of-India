@@ -1,4 +1,5 @@
 from constants import *
+import random
 
 with open('assets/firebase.json', 'r') as c:
     firebaseConfig = json.load(c)
@@ -10,10 +11,6 @@ storage = firebase.storage()
 
 def signup(error_tag, firstname, lastname, dob, gender, address, district, state, pincode, nationality, mobile, email, kyc_type,
            kyc_ref, kyc_path, account_type):
-
-    if firstname == '':
-        error_tag.config(text='Hello')
-
 
     data = {
         "firstname":firstname.title(),
@@ -32,3 +29,12 @@ def signup(error_tag, firstname, lastname, dob, gender, address, district, state
         "kyc_upload":kyc_path,
         "account_type":account_type
     }
+
+    combi = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+    id = random.choice(combi) + random.choice(combi) + random.choice(combi) + random.choice(combi) + random.choice(combi)
+    if db.child('account_requests').child(id).get().val() == None and db.child('account_holders').child(id).get().val()==None:
+        db.child('account_requests').child(id).set(data)
+        storage.child('account_requests').child(id).put(kyc_path)
+        messagebox.showinfo('Room ID', f"You room id: {id}")
+    else:
+        print('existing id')
