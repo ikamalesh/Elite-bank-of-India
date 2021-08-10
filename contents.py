@@ -136,7 +136,11 @@ def newaccount_contents(frame):
 
     def file():
         global filename
-        filename = filedialog.askopenfile(initialdir="/", title='Select a file', filetypes=(('PDF files', '*.pdf'),))
+        filename = filedialog.askopenfile(initialdir="/", title='Select a file', filetypes=(('All files','*.*'),
+                                                                                            ('PDF files', '*.pdf'),
+                                                                                            ('JPG files','*.jpg'),
+                                                                                            ('JPEG files','*.jpeg')
+                                                                                            ))
         filename = filename.name
 
     def submit_button():
@@ -213,9 +217,14 @@ def newaccount_contents(frame):
     l_refno.place(x=X_REF + 240, y=Y_REF + 360, width=180, height=25)
 
     ######ENTRIES
-    firstname = Entry(subframe, bd=1, relief=SOLID, font=font)
-    lastname = Entry(subframe, bd=1, relief=SOLID, font=font)
+    firstname_error = Frame(subframe, bg='grey')
+    firstname = Entry(subframe, bd=0, relief=SOLID, font=font)
+
+    lastname_error = Frame(subframe, bg='grey')
+    lastname = Entry(subframe,bd=0, relief=SOLID, font=font)
+
     dob = Entry(subframe, bd=1, relief=SOLID, font=font)
+
     acctype1 = Radiobutton(subframe, text='Savings', variable=accounttype, font=font, bg=color_bg, value='Savings',
                            activebackground=color_bg, anchor='w')
     acctype2 = Radiobutton(subframe, text='Current', variable=accounttype, font=font, bg=color_bg, value='Current',
@@ -243,8 +252,13 @@ def newaccount_contents(frame):
                   disabledforeground="black")
 
     ######ENTRIES PLACE
+
+    firstname_error.place(x=X_REF - 1, y=Y_REF + 25 - 1, width=202, height=27)
     firstname.place(x=X_REF, y=Y_REF + 25, width=200, height=25)
+
+    lastname_error.place(x=X_REF + 220 - 1, y=Y_REF + 25 - 1, width=202, height=27)
     lastname.place(x=X_REF + 220, y=Y_REF + 25, width=200, height=25)
+
     dob.place(x=X_REF, y=Y_REF + 60 + 25, width=200, height=25)
     acctype1.place(x=X_REF + 220, y=Y_REF + 60 + 25, width=100, height=25), acctype2.place(x=X_REF + 320,
                                                                                            y=Y_REF + 60 + 25, width=100,

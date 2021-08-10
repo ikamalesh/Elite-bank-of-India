@@ -12,6 +12,7 @@ storage = firebase.storage()
 def signup(error_tag, firstname, lastname, dob, gender, address, district, state, pincode, nationality, mobile, email, kyc_type,
            kyc_ref, kyc_path, account_type):
 
+
     data = {
         "firstname":firstname.title(),
         "lastname":lastname.title(),
@@ -35,6 +36,6 @@ def signup(error_tag, firstname, lastname, dob, gender, address, district, state
     if db.child('account_requests').child(id).get().val() == None and db.child('account_holders').child(id).get().val()==None:
         db.child('account_requests').child(id).set(data)
         storage.child('account_requests').child(id).put(kyc_path)
-        messagebox.showinfo('Room ID', f"You room id: {id}")
+        messagebox.showinfo('Account number', f"You Account number: {id}")
     else:
-        print('existing id')
+        print('Id Existing')

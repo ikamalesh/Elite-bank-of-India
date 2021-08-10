@@ -23,6 +23,7 @@ class App():
         frame_login = Frame(self, bg=color_bg)
         frame_login.place(x=0, y=0, width=w, height=h)
         contents.login_contents(frame=window)
+        contents.login_contents(frame=window)
 
     def newaccount_window(self):
         self.title("Rossum's Bank | New Account")
