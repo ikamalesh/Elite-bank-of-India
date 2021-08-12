@@ -14,7 +14,7 @@ ASSETS_PATH = Path(__file__).resolve().parent / "assets"
 
 w = 900
 h = 600
-color_bg = '#EDF1F4'
+color_bg = 'white'
 color_logogreen = '#175C4C'
 color_orange = '#F29765'
 color_darkblack = '#232425'
