@@ -12,13 +12,16 @@ button_list = {}
 
 ASSETS_PATH = Path(__file__).resolve().parent / "assets"
 
-w = 900
-h = 600
+w = 1100
+h = 700
+
+
+
 color_bg = 'white'
 color_logogreen = '#175C4C'
 color_orange = '#F29765'
 color_darkblack = '#232425'
-color_topbar = '#9FD1C2'
+color_topbar = '#0285C3'
 
 
 def logo(width, file):
@@ -30,9 +33,9 @@ def logo(width, file):
 
 
 def progress_bar(frame):
-    #style = Style()
-    #style.theme_use('alt')
-    #style.configure("Horizontal.TProgressbar", background=color_logogreen)
+    # style = Style()
+    # style.theme_use('alt')
+    # style.configure("Horizontal.TProgressbar", background=color_logogreen)
 
     progress = Progressbar(frame, orient=HORIZONTAL,
                            length=300, mode='determinate', style="green.Horizontal.TProgressbar")
@@ -47,7 +50,7 @@ def progress_bar(frame):
 
 
 def topbar(frame, contents):
-    top_bar = Frame(frame, bg=color_topbar)
+    top_bar = Frame(frame, bg=color_topbar, bd=0)
     top_bar.place(x=0, y=0, width=w, height=30)
     x_ref = 10
     for items in contents:
@@ -70,4 +73,3 @@ def sidebar(frame, contents):
 def all_normal(button_list):
     for button in list(button_list.values()):
         button.config(bg=color_topbar)
-

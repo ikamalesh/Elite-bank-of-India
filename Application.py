@@ -1,5 +1,6 @@
 from constants import *
 import contents
+import contents2
 
 
 # Path to asset files for this GUI window.
@@ -29,7 +30,7 @@ class App():
         self.title("Rossum's Bank | New Account")
         frame_new = Frame(self, bg=color_bg)
         frame_new.place(x=0, y=0, width=w, height=h)
-        contents.newaccount_contents(frame=frame_new)
+        contents2.newaccount_contents(frame=frame_new)
 
     def about():
         print('in about page')
@@ -88,7 +89,7 @@ class App():
 
 if __name__ == '__main__':
     window = Tk()
-    window.geometry(f"{w}x{h}")
+    window.geometry(f"{w}x{h}+10+10")
     window.resizable(0, 0)
     App(window)
     window.mainloop()
