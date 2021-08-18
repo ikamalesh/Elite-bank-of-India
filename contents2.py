@@ -64,6 +64,7 @@ def newaccount_contents(frame):
     kyc = StringVar()
 
     ######LABELS
+    l_title =  Label(frame, text='Title', font=font, bg=color_bg, anchor='w', fg='grey')
     l_firstname = Label(frame, text='First name', font=font, bg=color_bg, anchor='w', fg='grey')
     l_lastname = Label(frame, text='Last name', font=font, bg=color_bg, anchor='w', fg='grey')
     l_dob = Label(frame, text='DOB (DD/MM/YYYY)', font=font, bg=color_bg, anchor='w', fg='grey')
@@ -80,8 +81,9 @@ def newaccount_contents(frame):
     l_refno = Label(frame, text='Reference No.', font=font, bg=color_bg, anchor='w', fg='grey')
 
     ######LABELS PLACE
-    l_firstname.place(x=X_REF+50, y=Y_REF, width=100, height=25)
-    l_lastname.place(x=X_REF + 220, y=Y_REF, width=100, height=25)
+    l_title.place(x=X_REF, y=Y_REF, width=100, height=25)
+    #l_firstname.place(x=X_REF+110, y=Y_REF, width=100, height=25)
+    #l_lastname.place(x=X_REF + 220, y=Y_REF, width=100, height=25)
     l_dob.place(x=X_REF, y=Y_REF + 60, width=150, height=25)
     l_acctype.place(x=X_REF + 220, y=Y_REF + 60, width=150, height=25)
     l_mobile.place(x=X_REF, y=Y_REF + 120, width=150, height=25)
@@ -96,14 +98,24 @@ def newaccount_contents(frame):
     l_refno.place(x=X_REF + 240, y=Y_REF + 360, width=180, height=25)
 
     ######ENTRIES
+
+    title  = Combobox(frame, state="readonly", font=font)
+    title['values'] = (' Mr', ' Mrs', ' Miss', ' Ms')
+    title["background"] = '#ff0000'
+
     #firstname_error = Frame(frame, bg='grey')
     firstname = Entry(frame, bd=1, relief=SOLID, font=font)
+    firstname.insert(0, ' First name')
 
     #lastname_error = Frame(frame, bg='grey')
     lastname = Entry(frame, bd=1, relief=SOLID, font=font)
+    lastname.insert(0, ' Last name')
+
 
     dob_error = Frame(frame, bg='grey')
     dob = Entry(frame, bd=0, relief=SOLID, font=font)
+    dob.bind('<>')
+
 
     acctype1 = Radiobutton(frame, text='Savings', variable=accounttype, font=font, bg=color_bg, value='Savings',
                            activebackground=color_bg, anchor='w')
@@ -148,14 +160,18 @@ def newaccount_contents(frame):
 
     ######ENTRIES PLACE
 
+    title.place(x=X_REF, y=Y_REF + 25, height=23, width=70)
+
     #firstname_error.place(x=X_REF - 1, y=Y_REF + 25 - 1, width=202, height=25)
-    firstname.place(x=X_REF+50, y=Y_REF + 25, width=200, height=23)
+    firstname.place(x=X_REF+90, y=Y_REF + 25, width=250, height=23)
 
     #lastname_error.place(x=X_REF + 220 - 1, y=Y_REF + 25 - 1, width=202, height=25)
-    lastname.place(x=X_REF + 220, y=Y_REF + 25, width=200, height=23)
+    lastname.place(x=X_REF + 360, y=Y_REF + 25, width=250, height=23)
 
-    dob_error.place(x=X_REF - 1, y=Y_REF + 60 + 25 - 1, width=202, height=25)
+    #dob_error.place(x=X_REF - 1, y=Y_REF + 60 + 25 - 1, width=202, height=25)
     dob.place(x=X_REF, y=Y_REF + 60 + 25, width=200, height=23)
+
+
     acctype1.place(x=X_REF + 220, y=Y_REF + 60 + 25, width=100, height=25), acctype2.place(x=X_REF + 320,
                                                                                            y=Y_REF + 60 + 25, width=100,
                                                                                            height=25)
