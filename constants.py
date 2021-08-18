@@ -15,19 +15,20 @@ ASSETS_PATH = Path(__file__).resolve().parent / "assets"
 w = 1100
 h = 700
 
-
-
 color_bg = 'white'
 color_logogreen = '#175C4C'
 color_orange = '#F29765'
 color_darkblack = '#232425'
-color_topbar = '#0285C3'
+color_topbar = '#5A86BF'
 
 
-def logo(width, file):
+def logo(width, file,resize=False):
     global logo_img
     logo_img = Image.open(ASSETS_PATH / f"2/{file}")
-    logo_img = logo_img.resize((width, width))
+    if resize == True:
+        logo_img = logo_img.resize((width,width))
+    else:
+        pass
     logo_img = ImageTk.PhotoImage(logo_img)
     return logo_img
 
@@ -51,12 +52,18 @@ def progress_bar(frame):
 
 def topbar(frame, contents):
     top_bar = Frame(frame, bg=color_topbar, bd=0)
-    top_bar.place(x=0, y=0, width=w, height=30)
-    x_ref = 10
+    top_bar.place(x=0, y=0, width=w, height=50)
+    global logo_img1, logo_label1
+    logo_img1 = logo(230, file='logo-color150.png')
+    logo_label1 = Label(frame, image=logo_img1, bd=0, bg=color_bg)
+    logo_label1.place(x=0, y=0)
+
+    x_ref = 200
     for items in contents:
         b = Button(frame, text=items, command=contents[items], bg=color_topbar, activebackground=color_topbar,
-                   font=("Lato", 10,), bd=0, relief=SOLID)
-        b.place(x=x_ref, y=0, width=50, height=30)
+                   font=("Lato", 10,), bd=0, relief=SOLID, cursor='hand2', fg='white')
+        b.place(x=x_ref, y=15, width=50, height=30)
+
         x_ref += 60
 
 
@@ -64,7 +71,7 @@ def sidebar(frame, contents):
     y_ref = 1
     for items in contents:
         b = Button(frame, text=items, command=contents[items], bg=color_topbar, activebackground=color_topbar,
-                   font=("Lato", 13,), bd=0, relief=SOLID, anchor='w')
+                   font=("Lato", 13,), bd=0, relief=SOLID, anchor='w', cursor='hand2')
         b.place(x=0, y=y_ref, width=250, height=35)
         y_ref += 36
         button_list[items] = b

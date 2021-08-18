@@ -13,12 +13,12 @@ class App():
         global logo_label,logo_img
         frame_starter = Frame(window, bg=color_topbar)
         frame_starter.place(x=0, y=0, width=w, height=h)
-        logo_img = logo(300, file='transparent2.png')
+        logo_img = logo(300, file='white.png')
         logo_label = Label(frame_starter, image=logo_img, bd=0, bg=color_topbar)
         logo_label.place(x=w / 2 - 300 / 2, y=h / 2 - 200)
-        # progress_bar(frame_starter)
+        #progress_bar(frame_starter)
         frame_starter.destroy()
-        App.newaccount_window(window)
+        App.login_window(window)
 
     def login_window(self):
         frame_login = Frame(self, bg=color_bg)
