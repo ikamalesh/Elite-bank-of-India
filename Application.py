@@ -18,7 +18,7 @@ class App():
         logo_label.place(x=w / 2 - 300 / 2, y=h / 2 - 200)
         #progress_bar(frame_starter)
         frame_starter.destroy()
-        App.login_window(window)
+        App.main_window(window,name='Mr. Kamalesh')
 
     def login_window(self):
         frame_login = Frame(self, bg=color_bg)
@@ -40,7 +40,7 @@ class App():
 
     def profile():
         all_normal(button_list)
-        button_list[' Profile'].config(bg=color_bg)
+        button_list[' Profile'].config(bg='#393C43')
 
     def check_balance():
         all_normal(button_list)
@@ -74,15 +74,11 @@ class App():
         frame_main = Frame(self, bg=color_bg)
         frame_main.place(x=0, y=0, width=w, height=h)
 
-        frame_right = Frame(self, bg=color_bg, bd=2, relief=GROOVE)
-        frame_right.place(x=230, y=30, width=w - 230, height=h - 30)
+        frame_right = Frame(self, bg=color_bg, bd=0, relief=GROOVE)
+        frame_right.place(x=230, y=30+20, width=w - 230, height=h - 30-20)
 
-        frame_left = Frame(self, bg=color_logogreen)
+        frame_left = Frame(self, bg='#202225',bd=0)#bg=color_logogreen)
         frame_left.place(x=0, y=120, width=230, height=h - 120)
-
-        logo_img = logo(90, file='transparent2.png')
-        logo_label = Label(frame_main, image=logo_img, bd=0, bg=color_bg)
-        logo_label.place(x=0, y=30)
 
         contents.main_contents(frame=frame_main, frame1=frame_left, frame2=frame_right, name=name)
 

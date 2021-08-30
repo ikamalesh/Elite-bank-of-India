@@ -19,7 +19,7 @@ color_bg = 'white'
 color_logogreen = '#175C4C'
 color_orange = '#F29765'
 color_darkblack = '#232425'
-color_topbar = '#5A86BF'
+color_topbar = "#393C43"#'#5A86BF'
 
 
 def logo(width, file,resize=False):
@@ -73,7 +73,7 @@ def sidebar(frame, contents):
         b = Button(frame, text=items, command=contents[items], bg=color_topbar, activebackground=color_topbar,
                    font=("Lato", 13,), bd=0, relief=SOLID, anchor='w', cursor='hand2')
         b.place(x=0, y=y_ref, width=250, height=35)
-        y_ref += 36
+        y_ref += 35
         button_list[items] = b
 
 
