@@ -13,14 +13,14 @@ def login_contents(frame):
     topbar(frame, topbar_contents)
 
     global img1, imglabel1
-    img1 = logo(width=300, height=150,file='bestbanks1.png',resize=True)
+    img1 = logo(width=300, height=150, file='bestbanks1.png', resize=True)
     imglabel1 = Label(frame, image=img1, bd=0, bg=color_bg)
-    imglabel1.place(x=w/2-150, y= 110)
+    imglabel1.place(x=w / 2 - 150, y=110)
 
     Y_REF = 300
 
-    l1 = Label(frame, text='Account number',font=("Lato", 10),bd=0,bg=color_bg,fg=color_silver,anchor='w')
-    l1.place(x=w / 2 - 250 / 2, y=Y_REF-25, width=250, height=25)
+    l1 = Label(frame, text='Account number', font=("Lato", 10), bd=0, bg=color_bg, fg=color_silver, anchor='w')
+    l1.place(x=w / 2 - 250 / 2, y=Y_REF - 25, width=250, height=25)
 
     e1_frame = Frame(frame, bg=color_silver)
     login_accountnumber_entry = Entry(frame, bd=0, font=("Lato", 10,))
@@ -38,29 +38,31 @@ def login_contents(frame):
     login_password_entry.place(x=w / 2 - 250 / 2, y=Y_REF + 60, width=250, height=25)
 
     def login_click():
-        operations.signin(frame,login_accountnumber_entry.get(), login_password_entry.get())
+        operations.signin(frame, login_accountnumber_entry.get(), login_password_entry.get())
 
     button_login = Button(frame, bd=0, text='Log in', bg='#B3E982', fg='#283556', activebackground='#BCEC91',
-                          activeforeground='#283556', font=("Lato", 10, 'bold'),cursor='hand2',command=login_click)
+                          activeforeground='#283556', font=("Lato", 10, 'bold'), cursor='hand2', command=login_click)
     button_login.place(x=w / 2 - 250 / 2, y=Y_REF + 80 + 30, width=250, height=27)
 
     Label(frame, text='___________________\t\t___________________', fg=color_silver, bg=color_bg).place(
         x=w / 2 - 260 / 2,
-        y=Y_REF+390-230, width=260,
+        y=Y_REF + 390 - 230, width=260,
         height=20)
-    Label(frame, text='or', fg=color_silver, bg=color_bg, font=("Lato", 11,)).place(x=w / 2 - 20 / 2, y=Y_REF+393-230, width=20,
+    Label(frame, text='or', fg=color_silver, bg=color_bg, font=("Lato", 11,)).place(x=w / 2 - 20 / 2,
+                                                                                    y=Y_REF + 393 - 230, width=20,
                                                                                     height=20)
 
     button_forget = Button(frame, text='Forgot your password?', font=("Lato", 10,), bd=0, bg=color_bg,
-                           activebackground=color_bg, fg='#3A89ED',cursor='hand2')
-    button_forget.place(width=250, height=25, x=w / 2 - 250 / 2, y=Y_REF+420-230)
+                           activebackground=color_bg, fg='#3A89ED', cursor='hand2')
+    button_forget.place(width=250, height=25, x=w / 2 - 250 / 2, y=Y_REF + 420 - 230)
 
     button_newaccount = Button(frame, text='Create a new account', font=("Lato", 10,), bd=0, bg=color_bg,
-                               activebackground=color_bg, fg='#3A89ED', command=lambda: App.newaccount_window(frame),cursor='hand2')
-    button_newaccount.place(width=250, height=25, x=w / 2 - 250 / 2, y=Y_REF+450-230)
+                               activebackground=color_bg, fg='#3A89ED', command=lambda: App.newaccount_window(frame),
+                               cursor='hand2')
+    button_newaccount.place(width=250, height=25, x=w / 2 - 250 / 2, y=Y_REF + 450 - 230)
 
 
-def main_contents(frame, frame1, frame2, name):
+def main_contents(frame, frame1, name):
     global button_list
     topbar_contents = {'About': '',
                        'Settings': '',
@@ -70,7 +72,7 @@ def main_contents(frame, frame1, frame2, name):
     topbar(frame, topbar_contents)
 
     sidebar_contents = {
-        ' Profile': App.profile,
+        ' Profile': lambda: App.profile(frame),
         ' Check Balance': App.check_balance,
         ' View Transactions': App.view_transactions,
         ' Online Transfer': App.online_transfer,
@@ -80,20 +82,14 @@ def main_contents(frame, frame1, frame2, name):
         ' Personal Loans': App.personal_loans
     }
     button_list = sidebar(frame1, sidebar_contents)
-
+    App.profile(frame)
     Label(frame, text='Welcome', font=("Lato", 10,), bg=color_bg, anchor='w').place(x=90, y=50, width=100, height=20)
     Label(frame, text=name.title(), font=("Lato", 12, 'italic'), bg=color_bg, anchor='w', fg='purple').place(x=90, y=75,
                                                                                                              width=150,
                                                                                                              height=20)
 
-    #90
+    # 90
     global img3, imglabel3
     img3 = logo(width=75, height=75, file='bestbanks3.png', resize=True)
     imglabel3 = Label(frame, image=img3, bd=0, bg=color_bg)
     imglabel3.place(x=5, y=40)
-
-
-
-
-
-

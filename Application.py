@@ -38,9 +38,17 @@ class App():
     def home():
         print('in home page')
 
-    def profile():
+    def profile(self):
         all_normal(button_list)
         button_list[' Profile'].config(bg=color_bg,fg='#202225')
+
+        frame1 = Frame(self, bg=color_bg,bd=0)
+        frame1.place(x=230, y=30, width=w - 230, height=h - 30)
+
+        global profile_label, profile_img
+        profile_img = logo(width=150, height=150, file='female.png',resize=True)
+        profile_label = Label(frame1, image=profile_img, bd=0, bg=color_bg)
+        profile_label.place(x=(w-230)/2-150/2, y=h / 2 - 200)
 
     def check_balance():
         all_normal(button_list)
@@ -75,12 +83,12 @@ class App():
         frame_main.place(x=0, y=0, width=w, height=h)
 
         frame_right = Frame(self, bg=color_bg, bd=0, relief=GROOVE)
-        frame_right.place(x=230, y=30, width=w - 230, height=h - 30)
+        #frame_right.place(x=230, y=30, width=w - 230, height=h - 30)
 
         frame_left = Frame(self, bg='#202225',bd=0) #bg=color_logogreen)
         frame_left.place(x=0, y=120, width=230, height=h - 120)
 
-        contents.main_contents(frame=frame_main, frame1=frame_left, frame2=frame_right, name=name)
+        contents.main_contents(frame=frame_main, frame1=frame_left, name=name)
 
 
 if __name__ == '__main__':
