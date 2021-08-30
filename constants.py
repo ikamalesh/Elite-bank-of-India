@@ -57,7 +57,7 @@ def topbar(frame, contents):
     x_ref = 10
     for items in contents:
         b = Button(frame, text=items, command=contents[items], bg=color_topbar, activebackground=color_topbar,
-                   font=("Lato", 10,), bd=0, relief=SOLID, cursor='hand2', fg='white')
+                   font=("Lato", 10,), bd=0, relief=SOLID,  fg='white') #cursor='hand2',
         b.place(x=x_ref, y=0, width=50, height=30)
 
         x_ref += 60
@@ -66,8 +66,8 @@ def topbar(frame, contents):
 def sidebar(frame, contents):
     y_ref = 1
     for items in contents:
-        b = Button(frame, text=items, command=contents[items], bg=color_topbar, activebackground=color_topbar,
-                   font=("Lato", 13,), bd=0, relief=SOLID, anchor='w', cursor='hand2')
+        b = Button(frame, text=items, command=contents[items], bg=color_topbar, activebackground=color_topbar,fg='white',
+                   font=("Lato", 13,), bd=0, relief=SOLID, anchor='w', cursor='hand2',activeforeground='white')
         b.place(x=0, y=y_ref, width=250, height=35)
         y_ref += 35
         button_list[items] = b
@@ -75,4 +75,4 @@ def sidebar(frame, contents):
 
 def all_normal(button_list):
     for button in list(button_list.values()):
-        button.config(bg=color_topbar)
+        button.config(bg=color_topbar,fg='white')

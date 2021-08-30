@@ -1,0 +1,22 @@
+{
+  "title": "Mr.",
+  "first name": "Kamalesh",
+  "last name": "Sarveswaran",
+  "dob": {
+      "day": 11,
+      "month": 4,
+      "year": 2001
+  },
+  "account_type": "savings",
+  "mobile": "8667224209",
+  "email": "srikamalesh.2001@gmail.com",
+  "gender": "male",
+  "nationality": "India",
+  "address": "9/3, Rajeshwari Nagar, Bagalur Road, Hosur",
+  "pincode": 635109,
+  "district": "Krishnagiri",
+  "state": "Tamil Nadu",
+  "kyc_document": "PAN Card",
+  "kyc_path": "C://users/kamal/desktop/pan.pdf",
+  "kyc_reference_no": "INIPK1034D"
+}

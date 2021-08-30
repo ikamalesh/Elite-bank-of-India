@@ -1,11 +1,12 @@
 import operations
 from Application import *
 
+
 def newaccount_contents(frame):
-    global smile_img1, smile_label1
-    smile_img1 = logo(64,64, file='smile.png')
-    smile_label1 = Label(frame, image=smile_img1, bd=0, bg=color_bg)
-    smile_label1.place(x=20, y=h - 70)
+    global img2, imglabel2
+    img2 = logo(width=200, height=100, file='bestbanks1.png', resize=True)
+    imglabel2 = Label(frame, image=img2, bd=0, bg=color_bg)
+    imglabel2.place(x=10, y=30)
 
     def pincode_event(e):
         pin = pincode.get()
@@ -55,16 +56,17 @@ def newaccount_contents(frame):
     topbar(frame, topbar_contents)
 
     X_REF = 50
-    Y_REF = 70
+    Y_REF = 150
     font = ("Lato", 10)
 
+    global gender, accounttype
     accounttype = StringVar(value='Savings')
     gender = StringVar(value='None')
     nationality = StringVar()
     kyc = StringVar()
 
     ######LABELS
-    l_title =  Label(frame, text='Title', font=font, bg=color_bg, anchor='w', fg='grey')
+    l_title = Label(frame, text='Title', font=font, bg=color_bg, anchor='w', fg='grey')
     l_firstname = Label(frame, text='First name', font=font, bg=color_bg, anchor='w', fg='grey')
     l_lastname = Label(frame, text='Last name', font=font, bg=color_bg, anchor='w', fg='grey')
     l_dob = Label(frame, text='DOB (DD/MM/YYYY)', font=font, bg=color_bg, anchor='w', fg='grey')
@@ -82,8 +84,8 @@ def newaccount_contents(frame):
 
     ######LABELS PLACE
     l_title.place(x=X_REF, y=Y_REF, width=100, height=25)
-    #l_firstname.place(x=X_REF+110, y=Y_REF, width=100, height=25)
-    #l_lastname.place(x=X_REF + 220, y=Y_REF, width=100, height=25)
+    l_firstname.place(x=X_REF + 90, y=Y_REF, width=100, height=25)
+    l_lastname.place(x=X_REF + 220, y=Y_REF, width=100, height=25)
     l_dob.place(x=X_REF, y=Y_REF + 60, width=150, height=25)
     l_acctype.place(x=X_REF + 220, y=Y_REF + 60, width=150, height=25)
     l_mobile.place(x=X_REF, y=Y_REF + 120, width=150, height=25)
@@ -99,34 +101,23 @@ def newaccount_contents(frame):
 
     ######ENTRIES
 
-    title  = Combobox(frame, state="readonly", font=font)
+    title = Combobox(frame, state="readonly", font=font)
     title['values'] = (' Mr', ' Mrs', ' Miss', ' Ms')
     title["background"] = '#ff0000'
 
-    #firstname_error = Frame(frame, bg='grey')
     firstname = Entry(frame, bd=1, relief=SOLID, font=font)
-    firstname.insert(0, ' First name')
-
-    #lastname_error = Frame(frame, bg='grey')
     lastname = Entry(frame, bd=1, relief=SOLID, font=font)
-    lastname.insert(0, ' Last name')
-
-
-    dob_error = Frame(frame, bg='grey')
-    dob = Entry(frame, bd=0, relief=SOLID, font=font)
-    dob.bind('<>')
-
+    dob = Entry(frame, bd=1, relief=SOLID, font=font)
 
     acctype1 = Radiobutton(frame, text='Savings', variable=accounttype, font=font, bg=color_bg, value='Savings',
                            activebackground=color_bg, anchor='w')
     acctype2 = Radiobutton(frame, text='Current', variable=accounttype, font=font, bg=color_bg, value='Current',
                            activebackground=color_bg)
 
-    mobile_error = Frame(frame, bg='grey')
-    mobile = Entry(frame, bd=0, relief=SOLID, font=font)
+    mobile = Entry(frame, bd=1, relief=SOLID, font=font)
 
     email_error = Frame(frame, bg='grey')
-    email = Entry(frame, bd=0, relief=SOLID, font=font)
+    email = Entry(frame, bd=1, relief=SOLID, font=font)
 
     gender1 = Radiobutton(frame, text='Male', variable=gender, font=font, bg=color_bg, value='Male',
                           activebackground=color_bg, anchor='w')
@@ -138,73 +129,44 @@ def newaccount_contents(frame):
     nation["background"] = '#ff0000'
 
     address_error = Frame(frame, bg='grey')
-    address = Entry(frame, bd=0, relief=SOLID, font=font)
+    address = Entry(frame, bd=1, relief=SOLID, font=font)
 
     pincode_error = Frame(frame, bg='grey')
-    pincode = Entry(frame, bd=0, relief=SOLID, font=font)
+    pincode = Entry(frame, bd=1, relief=SOLID, font=font)
     pincode.bind("<FocusOut>", pincode_event)
-
-    district_error = Frame(frame, bg='grey')
-    district = Entry(frame, bd=0, relief=SOLID, font=font, state=DISABLED, disabledbackground="white",
+    district = Entry(frame, bd=1, relief=SOLID, font=font, state=DISABLED, disabledbackground="white",
                      disabledforeground="black")
-    state_error = Frame(frame, bg='grey')
-    state = Entry(frame, bd=0, relief=SOLID, font=font, state=DISABLED, disabledbackground="white",
+    state = Entry(frame, bd=1, relief=SOLID, font=font, state=DISABLED, disabledbackground="white",
                   disabledforeground="black")
     kyc_combo = Combobox(frame, width=27, textvariable=kyc, state="readonly", font=font)
     kyc_combo['values'] = (' PAN Card', ' Aadhaar Card', ' Passport')
     kyc_combo["background"] = '#ff0000'
-
-    refno_error = Frame(frame, bg='grey')
-    refno = Entry(frame, bd=0, relief=SOLID, font=font, disabledbackground="white",
+    refno = Entry(frame, bd=1, relief=SOLID, font=font, disabledbackground="white",
                   disabledforeground="black")
 
     ######ENTRIES PLACE
 
     title.place(x=X_REF, y=Y_REF + 25, height=23, width=70)
-
-    #firstname_error.place(x=X_REF - 1, y=Y_REF + 25 - 1, width=202, height=25)
-    firstname.place(x=X_REF+90, y=Y_REF + 25, width=250, height=23)
-
-    #lastname_error.place(x=X_REF + 220 - 1, y=Y_REF + 25 - 1, width=202, height=25)
-    lastname.place(x=X_REF + 360, y=Y_REF + 25, width=250, height=23)
-
-    #dob_error.place(x=X_REF - 1, y=Y_REF + 60 + 25 - 1, width=202, height=25)
-    dob.place(x=X_REF, y=Y_REF + 60 + 25, width=200, height=23)
-
-
+    firstname.place(x=X_REF + 90, y=Y_REF + 25, width=150, height=23)
+    lastname.place(x=X_REF + 90+170, y=Y_REF + 25, width=150, height=23)
+    dob.place(x=X_REF, y=Y_REF + 60 + 25, width=150, height=23)
     acctype1.place(x=X_REF + 220, y=Y_REF + 60 + 25, width=100, height=25), acctype2.place(x=X_REF + 320,
                                                                                            y=Y_REF + 60 + 25, width=100,
                                                                                            height=25)
-
-    mobile_error.place(x=X_REF - 1, y=Y_REF + 120 + 25 - 1, width=202, height=25)
     mobile.place(x=X_REF, y=Y_REF + 120 + 25, width=200, height=23)
-
-    email_error.place(x=X_REF + 220 - 1, y=Y_REF + 120 + 25 - 1, width=202, height=25)
     email.place(x=X_REF + 220, y=Y_REF + 120 + 25, width=200, height=23)
     gender1.place(x=X_REF, y=Y_REF + 180 + 25, width=100, height=25), gender2.place(x=X_REF + 100, y=Y_REF + 180 + 25,
                                                                                     width=100, height=25)
     nation.place(x=X_REF + 220, y=Y_REF + 180 + 25, width=200, height=23)
-
-    address_error.place(x=X_REF - 1, y=Y_REF + 240 + 25 - 1, width=422, height=25)
     address.place(x=X_REF, y=Y_REF + 240 + 25, width=420, height=23)
-
-    pincode_error.place(x=X_REF - 1, y=Y_REF + 300 + 25 - 1, width=102, height=25)
     pincode.place(x=X_REF, y=Y_REF + 300 + 25, width=100, height=23)
-
-    district_error.place(x=X_REF + 110 - 1, y=Y_REF + 300 + 25 - 1, width=152, height=25)
     district.place(x=X_REF + 110, y=Y_REF + 300 + 25, width=150, height=23)
-
-    state_error.place(x=X_REF + 270 - 1, y=Y_REF + 300 + 25 - 1, width=152, height=25)
     state.place(x=X_REF + 270, y=Y_REF + 300 + 25, width=150, height=23)
-
     kyc_combo.place(x=X_REF, y=Y_REF + 360 + 25, width=150, height=23)
-
-    refno_error.place(x=X_REF + 240 - 1, y=Y_REF + 360 + 25 - 1, width=182, height=25)
     refno.place(x=X_REF + 240, y=Y_REF + 360 + 25, width=180, height=23)
-
     upload = Button(frame, text='Upload', bd=1, relief=SOLID, command=file)
     upload.place(x=X_REF + 160, y=Y_REF + 360 + 25, width=50, height=23)
 
     ######
     l_error = Label(frame, text="Label error", fg='red', bg=color_bg)
-    #l_error.place(x=(w + 30 + 440) / 2 - 250 / 2, y=5, width=250)
+    # l_error.place(x=(w + 30 + 440) / 2 - 250 / 2, y=5, width=250)

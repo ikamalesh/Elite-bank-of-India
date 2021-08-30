@@ -18,7 +18,7 @@ class App():
         logo_label.place(x=w / 2 - 300 / 2, y=h / 2 - 200)
         #progress_bar(frame_starter)
         frame_starter.destroy()
-        App.login_window(window)
+        App.main_window(window,"Mr. Kamalesh")
 
     def login_window(self):
         frame_login = Frame(self, bg=color_bg)
@@ -40,44 +40,44 @@ class App():
 
     def profile():
         all_normal(button_list)
-        button_list[' Profile'].config(bg='#393C43')
+        button_list[' Profile'].config(bg=color_bg,fg='#202225')
 
     def check_balance():
         all_normal(button_list)
-        button_list[' Check Balance'].config(bg=color_bg)
+        button_list[' Check Balance'].config(bg=color_bg,fg='#202225')
 
     def view_transactions():
         all_normal(button_list)
-        button_list[' View Transactions'].config(bg=color_bg)
+        button_list[' View Transactions'].config(bg=color_bg,fg='#202225')
 
     def online_transfer():
         all_normal(button_list)
-        button_list[' Online Transfer'].config(bg=color_bg)
+        button_list[' Online Transfer'].config(bg=color_bg,fg='#202225')
 
     def deposit():
         all_normal(button_list)
-        button_list[' Deposit'].config(bg=color_bg)
+        button_list[' Deposit'].config(bg=color_bg,fg='#202225')
 
     def withdraw():
         all_normal(button_list)
-        button_list[' Withdraw'].config(bg=color_bg)
+        button_list[' Withdraw'].config(bg=color_bg,fg='#202225')
 
     def investments():
         all_normal(button_list)
-        button_list[' Investments'].config(bg=color_bg)
+        button_list[' Investments'].config(bg=color_bg,fg='#202225')
 
     def personal_loans():
         all_normal(button_list)
-        button_list[' Personal Loans'].config(bg=color_bg)
+        button_list[' Personal Loans'].config(bg=color_bg,fg='#202225')
 
     def main_window(self, name):
         frame_main = Frame(self, bg=color_bg)
         frame_main.place(x=0, y=0, width=w, height=h)
 
         frame_right = Frame(self, bg=color_bg, bd=0, relief=GROOVE)
-        frame_right.place(x=230, y=30+20, width=w - 230, height=h - 30-20)
+        frame_right.place(x=230, y=30, width=w - 230, height=h - 30)
 
-        frame_left = Frame(self, bg='#202225',bd=0)#bg=color_logogreen)
+        frame_left = Frame(self, bg='#202225',bd=0) #bg=color_logogreen)
         frame_left.place(x=0, y=120, width=230, height=h - 120)
 
         contents.main_contents(frame=frame_main, frame1=frame_left, frame2=frame_right, name=name)

@@ -1,5 +1,6 @@
 from constants import *
 import random
+from Application import App
 
 with open('assets/firebase.json', 'r') as c:
     firebaseConfig = json.load(c)
@@ -39,3 +40,7 @@ def signup(error_tag, firstname, lastname, dob, gender, address, district, state
         messagebox.showinfo('Account number', f"You Account number: {id}")
     else:
         print('Id Existing')
+
+def signin(frame, username, password):
+    print(username, password)
+    App.main_window(frame,name=username)
