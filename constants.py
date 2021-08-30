@@ -22,11 +22,11 @@ color_darkblack = '#232425'
 color_topbar = "#393C43"#'#5A86BF'
 
 
-def logo(width, file,resize=False):
+def logo(width,height, file, resize=False):
     global logo_img
     logo_img = Image.open(ASSETS_PATH / f"2/{file}")
     if resize == True:
-        logo_img = logo_img.resize((width,width))
+        logo_img = logo_img.resize((width,height))
     else:
         pass
     logo_img = ImageTk.PhotoImage(logo_img)
@@ -52,17 +52,13 @@ def progress_bar(frame):
 
 def topbar(frame, contents):
     top_bar = Frame(frame, bg=color_topbar, bd=0)
-    top_bar.place(x=0, y=0, width=w, height=50)
-    global logo_img1, logo_label1
-    logo_img1 = logo(230, file='logo-color150.png')
-    logo_label1 = Label(frame, image=logo_img1, bd=0, bg=color_bg)
-    logo_label1.place(x=0, y=0)
+    top_bar.place(x=0, y=0, width=w, height=30)
 
-    x_ref = 200
+    x_ref = 10
     for items in contents:
         b = Button(frame, text=items, command=contents[items], bg=color_topbar, activebackground=color_topbar,
                    font=("Lato", 10,), bd=0, relief=SOLID, cursor='hand2', fg='white')
-        b.place(x=x_ref, y=15, width=50, height=30)
+        b.place(x=x_ref, y=0, width=50, height=30)
 
         x_ref += 60
 

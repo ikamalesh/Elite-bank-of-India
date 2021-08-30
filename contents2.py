@@ -3,7 +3,7 @@ from Application import *
 
 def newaccount_contents(frame):
     global smile_img1, smile_label1
-    smile_img1 = logo(64, file='smile.png')
+    smile_img1 = logo(64,64, file='smile.png')
     smile_label1 = Label(frame, image=smile_img1, bd=0, bg=color_bg)
     smile_label1.place(x=20, y=h - 70)
 

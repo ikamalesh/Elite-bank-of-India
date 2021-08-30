@@ -12,6 +12,11 @@ def login_contents(frame):
 
     topbar(frame, topbar_contents)
 
+    global img1, imglabel1
+    img1 = logo(width=300, height=150,file='bestbanks1.png',resize=True)
+    imglabel1 = Label(frame, image=img1, bd=0, bg=color_bg)
+    imglabel1.place(x=w/2-150, y= 110)
+
     Y_REF = 300
 
     e1_frame = Frame(frame, bg='silver')
@@ -26,7 +31,7 @@ def login_contents(frame):
     e2_frame.place(x=w / 2 - 250 / 2 - 1, y=Y_REF + 40 - 1, width=252, height=27)
     login_password_entry.place(x=w / 2 - 250 / 2, y=Y_REF + 40, width=250, height=25)
 
-    button_login = Button(frame, bd=0, text='Log in', bg='#175C4C', fg='white', activebackground='#1B6A58',
+    button_login = Button(frame, bd=0, text='Log in', bg='#B3E982', fg='#283556', activebackground='#1B6A58',
                           activeforeground='white', font=("Lato", 10, 'bold'),cursor='hand2')
     button_login.place(x=w / 2 - 250 / 2, y=Y_REF + 80 + 10, width=250, height=27)
 
