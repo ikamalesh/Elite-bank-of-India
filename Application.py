@@ -38,21 +38,26 @@ class App():
     def home():
         print('in home page')
 
-    def profile(self):
+    def profile(self,position):
         all_normal(button_list)
         button_list[' Profile'].config(bg=color_bg,fg='#202225')
 
-        frame1 = Frame(self, bg=color_bg,bd=0)
-        frame1.place(x=230, y=30, width=w - 230, height=h - 30)
+        frame1 = Frame(self, bg='red',bd=0)
+        frame1.place(x=230+position, y=30, width=w - 230, height=h - 30)
 
         global profile_label, profile_img
         profile_img = logo(width=150, height=150, file='female.png',resize=True)
         profile_label = Label(frame1, image=profile_img, bd=0, bg=color_bg)
-        profile_label.place(x=(w-230)/2-150/2, y=h / 2 - 200)
+        profile_label.place(x=(w-230)/2-(150/2), y=h / 2 - 250)
 
-    def check_balance():
+    def check_balance(self, position):
         all_normal(button_list)
         button_list[' Check Balance'].config(bg=color_bg,fg='#202225')
+
+        frame2 = Frame(self, bg=color_bg, bd=0)
+        frame2.place(x=230, y=30, width=w - 230, height=h - 30)
+
+        Label(frame2, text='In frame 2').pack()
 
     def view_transactions():
         all_normal(button_list)
