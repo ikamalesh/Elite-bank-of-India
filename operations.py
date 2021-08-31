@@ -10,36 +10,46 @@ db = firebase.database()
 auth = firebase.auth()
 storage = firebase.storage()
 
-def signup(error_tag, firstname, lastname, dob, gender, address, district, state, pincode, nationality, mobile, email, kyc_type,
-           kyc_ref, kyc_path, account_type):
 
-
+def signup(title, firstname, lastname, dob, account_type, mobile, email, gender, nationality,address, pincode,district, state,
+           kyc_type,kyc_ref, kyc_path, nom_title,nom_firstname,nom_lastname,nom_mobile,nom_email,nom_relationship):
     data = {
-        "firstname":firstname.title(),
-        "lastname":lastname.title(),
-        "dob":dob,
-        "gender":gender,
-        "address":address,
-        "district":district,
-        "state":state,
+        "title": title,
+        "firstname": firstname.title(),
+        "lastname": lastname.title(),
+        "dob": dob,
+        "account_type": account_type,
+        "mobile": mobile,
+        "email": email,
+        "gender": gender,
+        "nationality": nationality,
+        "address": address,
         "pincode": pincode,
-        "nationality":nationality,
-        "mobile":mobile,
-        "email":email,
-        "kyc_type":kyc_type,
-        "kyc_ref":kyc_ref,
-        "kyc_upload":kyc_path,
-        "account_type":account_type
+        "district": district,
+        "state": state,
+        "kyc_type": kyc_type,
+        "kyc_ref": kyc_ref,
+        "kyc_upload": kyc_path,
+
+        "nom_title":nom_title,
+        "non_firstname":nom_firstname,
+        "nom_lastname":nom_lastname,
+        "nom_mobile":nom_mobile,
+        "nom_email":nom_email,
+        "nom_relatinoship":nom_relationship
     }
 
     combi = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
-    id = random.choice(combi) + random.choice(combi) + random.choice(combi) + random.choice(combi) + random.choice(combi)
-    if db.child('account_requests').child(id).get().val() == None and db.child('account_holders').child(id).get().val()==None:
+    id = random.choice(combi) + random.choice(combi) + random.choice(combi) + random.choice(combi) + random.choice(
+        combi)
+    if db.child('account_requests').child(id).get().val() == None and db.child('account_holders').child(
+            id).get().val() == None:
         db.child('account_requests').child(id).set(data)
         storage.child('account_requests').child(id).put(kyc_path)
         messagebox.showinfo('Account number', f"You Account number: {id}")
     else:
         print('Id Existing')
+
 
 def signin(frame, username, password):
     print(username, password)

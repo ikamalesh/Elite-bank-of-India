@@ -7,6 +7,8 @@ def newaccount_contents(frame):
     img2 = logo(width=200, height=100, file='bestbanks1.png', resize=True)
     imglabel2 = Label(frame, image=img2, bd=0, bg=color_bg)
     imglabel2.place(x=10, y=30)
+    topbar_contents = {'< Back': frame.destroy, }
+    topbar(frame, topbar_contents)
 
     def pincode_event(e):
         pin = pincode.get()
@@ -34,6 +36,8 @@ def newaccount_contents(frame):
             district.config(state=DISABLED)
             state.config(state=DISABLED)
 
+    global filename
+
     def file():
         global filename
         filename = filedialog.askopenfile(initialdir="/", title='Select a file', filetypes=(('All files', '*.*'),
@@ -45,9 +49,6 @@ def newaccount_contents(frame):
         except:
             pass
 
-    topbar_contents = {'< Back': frame.destroy, }
-    topbar(frame, topbar_contents)
-
     X_REF = 80
     X_REF2 = 600
     Y_REF = 170
@@ -58,8 +59,6 @@ def newaccount_contents(frame):
     accounttype.set('Savings')
     gender = StringVar()
     gender.set('None')
-
-
     ######LABELS
     l_title = Label(frame, text='Title', font=font, bg=color_bg, anchor='w', fg='grey')
     l_firstname = Label(frame, text='First name', font=font, bg=color_bg, anchor='w', fg='grey')
@@ -115,7 +114,6 @@ def newaccount_contents(frame):
     firstname = Entry(frame, bd=1, relief=SOLID, font=font)
     lastname = Entry(frame, bd=1, relief=SOLID, font=font)
     dob = Entry(frame, bd=1, relief=SOLID, font=font)
-
     acctype1 = Radiobutton(frame, text='Savings', variable=accounttype, font=font, bg=color_bg, value='Savings',
                            activebackground=color_bg, anchor='w')
     acctype2 = Radiobutton(frame, text='Current', variable=accounttype, font=font, bg=color_bg, value='Current',
@@ -208,11 +206,14 @@ def newaccount_contents(frame):
     otp_entry = Entry(frame, bg=color_bg, bd=1, relief=SOLID, font=('times', 20), justify=CENTER)
     otp_entry.place(x=X_REF2, y=Y_REF + 275, width=150, height=30)
 
-    def otp():
+    def otp_button():
+        global otp
+        otp = str(random.randint(1111, 9999))
+        Thread(target=lambda :send_otp(email.get(),otp)).start()
         otp_sent_label.config(text='Check your email for the OTP')
         otp_resend.place(x=X_REF2 + 151, y=Y_REF + 275, width=20, height=20)
-        from threading import Thread
-        Thread(target=timer).start()
+        timerthread = Thread(target=timer)
+        timerthread.start()
         otp_send.destroy()
 
     def timer():
@@ -227,12 +228,12 @@ def newaccount_contents(frame):
         except:
             pass
 
-    otp_send = Button(frame, text='Send OTP', bd=1, relief=SOLID, font=('lato', 11), bg=color_bg, command=otp,
+    otp_send = Button(frame, text='Send OTP', bd=1, relief=SOLID, font=('lato', 11), bg=color_bg, command=otp_button,
                       activebackground=color_bg, cursor='hand2')
     otp_send.place(x=X_REF2, y=Y_REF + 275, width=150, height=30)
 
     otp_resend = Button(frame, text='↻', bd=0, relief=SOLID, font=('times', 15), bg=color_bg, activebackground=color_bg,
-                        fg='red', command=otp)
+                        fg='red', command=otp_button)
     otp_sent_label = Label(frame, text='', bg=color_bg, fg='green')
     otp_sent_label.place(x=X_REF2 + 171, y=Y_REF + 270, width=200, height=20)
     timer_label = Label(frame, text='', bg=color_bg, fg='red')
@@ -251,29 +252,59 @@ def newaccount_contents(frame):
     agree_termsandconditions.place(x=X_REF2, y=Y_REF + 325, width=200, height=20)
 
     check_list_empties = {title: l_title, firstname: l_firstname, lastname: l_lastname, dob: l_dob,
-                         mobile: l_mobile, email: l_email, nation: l_nationality, address: l_address,
-                         pincode: l_pincode,state:l_pincode, kyc_combo: l_kyc,
-                         refno: l_refno, title_n: l_title_n, firstname_n: l_firstname_n, lastname_n: l_lastname_n,
-                         mobile_n: l_mobile_n,email_n:l_email_n,relationship:l_relationship_n}
+                          mobile: l_mobile, email: l_email, nation: l_nationality, address: l_address,
+                          pincode: l_pincode, state: l_pincode, kyc_combo: l_kyc,
+                          refno: l_refno, title_n: l_title_n, firstname_n: l_firstname_n, lastname_n: l_lastname_n,
+                          mobile_n: l_mobile_n, email_n: l_email_n, relationship: l_relationship_n}
 
     def signup():
+        print(otp)
+        global all_checked
+        all_checked = False
         for item in check_list_empties.keys():
             if item.get() == '':
                 check_list_empties[item].config(fg='red')
+                all_checked = False
                 break
-
-        if check_dob(dob.get()) is True:
-            if check_mobilenumber(mobile.get()) is True:
-                if check_email(email.get()) is True:
-                    if check_captcha(captcha_entry.get()):
-                        print('all ok')
-
-
-
-
-
-
-
+            else:
+                all_checked = True
+        if all_checked:
+            if check_dob(dob.get()) is True:
+                if check_mobilenumber(mobile.get()) is True:
+                    if check_email(email.get()) is True:
+                        if gender.get() != "None":
+                            if check_captcha(captcha_entry.get()):
+                                if check_mobilenumber(mobile_n.get()):
+                                    if check_email(email_n.get()):
+                                        if otp == str(otp_entry.get()):
+                                            operations.signup(
+                                                title.get(), firstname.get(), lastname.get(), dob.get(), accounttype.get(),
+                                                mobile.get(), email.get(),
+                                                gender.get(), nation.get(), address.get(), pincode.get(), district.get(),
+                                                state.get(), kyc_combo.get(), refno.get(),
+                                                filename, title_n.get(), firstname_n.get(), lastname_n.get(),
+                                                mobile_n.get(), email_n.get(), relationship.get()
+                                            )
+                                        else:
+                                            otp_sent_label.config(text='Incorrect OTP, Try again')
+                                    else:
+                                        l_email_n.config(fg='red')
+                                else:
+                                    l_mobile_n.config(fg='red')
+                            elif captcha_entry.get() == '':
+                                pass
+                            else:
+                                change_captcha(captcha_display, captcha_entry)
+                        else:
+                            l_gender.config('red')
+                    else:
+                        l_email.config(fg='red')
+                else:
+                    l_mobile.config(fg='red')
+            else:
+                l_dob.config(fg='red')
+        else:
+            print('NOT ALL CHECKED')
 
     def all_back_to_grey(e):
         for item in check_list_empties.values():

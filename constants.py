@@ -1,4 +1,5 @@
 import random
+import ezgmail
 from time import sleep
 from pathlib import Path
 from tkinter.ttk import Progressbar, Style, Combobox
@@ -8,6 +9,7 @@ from PIL import Image, ImageTk
 import json
 import pyrebase
 import csv
+from threading import Thread
 
 button_list = {}
 
@@ -103,6 +105,7 @@ def change_captcha(label, entry):
     label.config(text=p)
     captcha_text = p
 
+
 def check_captcha(captcha_entry):
     global captcha_text
     if str(captcha_entry) == str(captcha_text):
@@ -121,10 +124,13 @@ def check_mobilenumber(number):
         return False
 
 def check_email(email):
-    if '@' or '.com' or '.co.in' in email:
-        return True
+    if email == '':
+        print('ntg')
     else:
-        return False
+        if '@' in email or '.com' in email or '.co.in' in email:
+            return True
+        else:
+            return False
 
 def check_dob(dob_entry):
     dob = dob_entry.split('/')
@@ -150,3 +156,5 @@ def check_dob(dob_entry):
     else:
         return False
 
+def send_otp(emailid,otp):
+    ezgmail.send(emailid,'Verification',f'Your OTP - {otp}')
