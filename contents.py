@@ -40,7 +40,7 @@ def login_contents(frame):
     def login_click():
         operations.signin(frame, login_accountnumber_entry.get(), login_password_entry.get())
 
-    button_login = Button(frame, bd=0, text='Log in', bg='#B3E982', fg='#283556', activebackground='#BCEC91',
+    button_login = Button(frame, bd=0, text='Login', bg='#B3E982', fg='#283556', activebackground='#BCEC91',
                           activeforeground='#283556', font=("Lato", 10, 'bold'), cursor='hand2', command=login_click)
     button_login.place(x=w / 2 - 250 / 2, y=Y_REF + 80 + 30, width=250, height=27)
 

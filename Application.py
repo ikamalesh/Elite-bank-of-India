@@ -9,7 +9,7 @@ ASSETS_PATH = Path(__file__).resolve().parent / "assets"
 
 class App():
     def __init__(self, window):
-        window.title("Rossum's Bank")
+        window.title("The Heiman Bank")
         global logo_label,logo_img
         frame_starter = Frame(window, bg=color_topbar)
         frame_starter.place(x=0, y=0, width=w, height=h)
@@ -18,7 +18,7 @@ class App():
         logo_label.place(x=w / 2 - 300 / 2, y=h / 2 - 200)
         #progress_bar(frame_starter)
         frame_starter.destroy()
-        App.main_window(window,"Mr. Kamalesh")
+        App.newaccount_window(window)
 
     def login_window(self):
         frame_login = Frame(self, bg=color_bg)
@@ -27,7 +27,7 @@ class App():
         contents.login_contents(frame=window)
 
     def newaccount_window(self):
-        self.title("Rossum's Bank | New Account")
+        self.title("The Heiman Bank | New Account")
         frame_new = Frame(self, bg=color_bg)
         frame_new.place(x=0, y=0, width=w, height=h)
         contents2.newaccount_contents(frame=frame_new)
@@ -42,7 +42,7 @@ class App():
         all_normal(button_list)
         button_list[' Profile'].config(bg=color_bg,fg='#202225')
 
-        frame1 = Frame(self, bg='red',bd=0)
+        frame1 = Frame(self, bg=color_bg,bd=0)
         frame1.place(x=230+position, y=30, width=w - 230, height=h - 30)
 
         global profile_label, profile_img

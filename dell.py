@@ -1,13 +1,15 @@
-from tkinter import *
+import random
 
-root = Tk()
-frame=Frame(root,width=100,heigh=100,bd=11)
-frame.pack()
-label = Label(frame,text="Enter a digit that you guessed:").pack()
-entry= Entry(frame,bd=4)
-entry.pack()
-entry.focus()
-button1=Button(root,width=4,height=1,text='ok')
-button1.pack()
 
-root.mainloop()
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+           'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+           'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+letter = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz"
+
+chance = 0
+list = []
+while chance<=100:
+    r = ''.join(random.choices(letter,k=4))
+    list.append(r)
+    chance+=1
+print(list)

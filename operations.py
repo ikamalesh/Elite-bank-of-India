@@ -43,4 +43,10 @@ def signup(error_tag, firstname, lastname, dob, gender, address, district, state
 
 def signin(frame, username, password):
     print(username, password)
-    App.main_window(frame,name=username)
+    try:
+        auth.sign_in_with_email_and_password(username, password)
+        crt_password = True
+        print(crt_password)
+    except:
+        crt_password = False
+        print(crt_password)
