@@ -10,6 +10,7 @@ def newaccount_contents(frame):
 
     def pincode_event(e):
         pin = pincode.get()
+        global found
         csv_file = csv.reader(open('india.csv', "r"), delimiter=",")
         for row in csv_file:
             if pin == row[0]:
@@ -21,6 +22,17 @@ def newaccount_contents(frame):
                 state.insert(0, row[2].title())
                 district.config(state=DISABLED)
                 state.config(state=DISABLED)
+                found = True
+                break
+            else:
+                found = False
+        if not found:
+            district.config(state=NORMAL)
+            state.config(state=NORMAL)
+            district.delete(0, END)
+            state.delete(0, END)
+            district.config(state=DISABLED)
+            state.config(state=DISABLED)
 
     def file():
         global filename
@@ -29,7 +41,7 @@ def newaccount_contents(frame):
                                                                                             ('JPG files', '*.jpg'),
                                                                                             ('JPEG files', '*.jpeg')))
         try:
-            flename = filename.name
+            filename = filename.name
         except:
             pass
 
@@ -42,9 +54,10 @@ def newaccount_contents(frame):
     font = ("Lato", 10)
 
     global gender, accounttype
-    accounttype = StringVar(value='Savings')
-    gender = StringVar(value='None')
-
+    accounttype = StringVar()
+    accounttype.set('Savings')
+    gender = StringVar()
+    gender.set('None')
 
 
     ######LABELS
@@ -93,7 +106,7 @@ def newaccount_contents(frame):
     l_lastname_n.place(x=X_REF2 + 260, y=Y_REF, width=120, height=25)
     l_mobile_n.place(x=X_REF2, y=Y_REF + 60, width=150, height=25)
     l_email_n.place(x=X_REF2 + 220, y=Y_REF + 60, width=100, height=25)
-    l_relationship_n.place(x=X_REF2 , y=Y_REF + 120, width=100, height=25)
+    l_relationship_n.place(x=X_REF2, y=Y_REF + 120, width=100, height=25)
 
     ######ENTRIES
     title = Combobox(frame, state="readonly", font=font)
@@ -102,6 +115,7 @@ def newaccount_contents(frame):
     firstname = Entry(frame, bd=1, relief=SOLID, font=font)
     lastname = Entry(frame, bd=1, relief=SOLID, font=font)
     dob = Entry(frame, bd=1, relief=SOLID, font=font)
+
     acctype1 = Radiobutton(frame, text='Savings', variable=accounttype, font=font, bg=color_bg, value='Savings',
                            activebackground=color_bg, anchor='w')
     acctype2 = Radiobutton(frame, text='Current', variable=accounttype, font=font, bg=color_bg, value='Current',
@@ -113,17 +127,19 @@ def newaccount_contents(frame):
     gender2 = Radiobutton(frame, text='Female', variable=gender, font=font, bg=color_bg, value='Female',
                           activebackground=color_bg)
     nation = Combobox(frame, width=27, state="readonly", font=font)
-    nation['values'] = (' India', ' Sri Lanka', ' Bangladesh')
+    nation['values'] = (' India', ' Sri Lanka')
     nation["background"] = '#ff0000'
     address = Entry(frame, bd=1, relief=SOLID, font=font)
     pincode = Entry(frame, bd=1, relief=SOLID, font=font)
     pincode.bind("<FocusOut>", pincode_event)
-    district = Entry(frame, bd=1, relief=SOLID, font=font, state=DISABLED, disabledbackground="white",disabledforeground="black")
-    state = Entry(frame, bd=1, relief=SOLID, font=font, state=DISABLED, disabledbackground="white",disabledforeground="black")
+    district = Entry(frame, bd=1, relief=SOLID, font=font, state=DISABLED, disabledbackground="white",
+                     disabledforeground="black")
+    state = Entry(frame, bd=1, relief=SOLID, font=font, state=DISABLED, disabledbackground="white",
+                  disabledforeground="black")
     kyc_combo = Combobox(frame, width=27, state="readonly", font=font)
     kyc_combo['values'] = (' PAN Card', ' Aadhaar Card', ' Passport')
     kyc_combo["background"] = '#ff0000'
-    refno = Entry(frame, bd=1, relief=SOLID, font=font, disabledbackground="white",disabledforeground="black")
+    refno = Entry(frame, bd=1, relief=SOLID, font=font, disabledbackground="white", disabledforeground="black")
 
     title_n = Combobox(frame, state="readonly", font=font)
     title_n['values'] = (' Mr', ' Mrs', ' Miss', ' Ms')
@@ -139,14 +155,14 @@ def newaccount_contents(frame):
     ######ENTRIES PLACE
     title.place(x=X_REF, y=Y_REF + 25, height=23, width=70)
     firstname.place(x=X_REF + 90, y=Y_REF + 25, width=150, height=23)
-    lastname.place(x=X_REF + 90+170, y=Y_REF + 25, width=150, height=23)
+    lastname.place(x=X_REF + 90 + 170, y=Y_REF + 25, width=150, height=23)
     dob.place(x=X_REF, y=Y_REF + 60 + 25, width=150, height=23)
     acctype1.place(x=X_REF + 220, y=Y_REF + 60 + 25, width=100, height=25)
-    acctype2.place(x=X_REF + 320,y=Y_REF + 60 + 25, width=100,height=25)
+    acctype2.place(x=X_REF + 320, y=Y_REF + 60 + 25, width=100, height=25)
     mobile.place(x=X_REF, y=Y_REF + 120 + 25, width=200, height=23)
     email.place(x=X_REF + 220, y=Y_REF + 120 + 25, width=200, height=23)
     gender1.place(x=X_REF, y=Y_REF + 180 + 25, width=100, height=25)
-    gender2.place(x=X_REF + 100, y=Y_REF + 180 + 25,width=100, height=25)
+    gender2.place(x=X_REF + 100, y=Y_REF + 180 + 25, width=100, height=25)
     nation.place(x=X_REF + 220, y=Y_REF + 180 + 25, width=200, height=23)
     address.place(x=X_REF, y=Y_REF + 240 + 25, width=420, height=23)
     pincode.place(x=X_REF, y=Y_REF + 300 + 25, width=100, height=23)
@@ -154,7 +170,7 @@ def newaccount_contents(frame):
     state.place(x=X_REF + 270, y=Y_REF + 300 + 25, width=150, height=23)
     kyc_combo.place(x=X_REF, y=Y_REF + 360 + 25, width=150, height=23)
     refno.place(x=X_REF + 240, y=Y_REF + 360 + 25, width=180, height=23)
-    upload = Button(frame, text='Upload', bd=1, relief=SOLID, command=file)
+    upload = Button(frame, text='Upload', bd=1, relief=SOLID, command=file, cursor='hand2')
     upload.place(x=X_REF + 160, y=Y_REF + 360 + 25, width=50, height=23)
 
     title_n.place(x=X_REF2, y=Y_REF + 25, height=23, width=70)
@@ -162,63 +178,111 @@ def newaccount_contents(frame):
     lastname_n.place(x=X_REF2 + 90 + 170, y=Y_REF + 25, width=150, height=23)
     mobile_n.place(x=X_REF2, y=Y_REF + 60 + 25, width=200, height=23)
     email_n.place(x=X_REF2 + 220, y=Y_REF + 60 + 25, width=200, height=23)
-    relationship.place(x=X_REF2, y=Y_REF + 25+ 120, height=23, width=100)
-
-
+    relationship.place(x=X_REF2, y=Y_REF + 25 + 120, height=23, width=100)
 
     l_captcha_n = Label(frame, text='Enter the shown text', font=font, bg=color_bg, anchor='w', fg='grey')
-    l_captcha_n.place(x=X_REF2+149, y=Y_REF+180, width=145, height=25)
+    l_captcha_n.place(x=X_REF2 + 149, y=Y_REF + 180, width=145, height=25)
 
     global bg_display, bg_img
-    bg_img = logo(300, height=300, file='background.png',resize=False)
+    bg_img = logo(300, height=300, file='background.png', resize=False)
 
-    bg_display = Label(frame,image=bg_img, bg=color_bg, bd=0, relief=SOLID,)
+    bg_display = Label(frame, image=bg_img, bg=color_bg, bd=0, relief=SOLID, )
     bg_display.place(x=X_REF2, y=Y_REF + 205, width=150, height=30)
 
-    captcha_display = Label(frame, text='', font=('times', 20),bg='#CBCBCB',bd=0,relief=SOLID,)
-    captcha_display.place(x=X_REF2+25, y=Y_REF+205, width=100,height=30)
+    captcha_display = Label(frame, text='', font=('times', 20), bg='#CBCBCB', bd=0, relief=SOLID, )
+    captcha_display.place(x=X_REF2 + 40, y=Y_REF + 205, width=70, height=30)
 
-    captcha_entry = Entry(frame, bg=color_bg, bd=1,relief=SOLID, font=('times', 20),justify=CENTER )
-    captcha_entry.place(x=X_REF2+149, y=Y_REF+205, width=150,height=30)
+    captcha_entry = Entry(frame, bg=color_bg, bd=1, relief=SOLID, font=('times', 20), justify=CENTER)
+    captcha_entry.place(x=X_REF2 + 149, y=Y_REF + 205, width=150, height=30)
 
-    captcha_refresh = Button(frame, text='↻', bd=0, relief=SOLID, command=lambda: change_captcha(captcha_display,captcha_entry), font=('times', 15),bg=color_bg,activebackground=color_bg,fg='red')
+    captcha_refresh = Button(frame, text='↻', bd=0, relief=SOLID,
+                             command=lambda: change_captcha(captcha_display, captcha_entry), font=('times', 15),
+                             bg=color_bg, activebackground=color_bg, fg='red')
     captcha_refresh.place(x=X_REF2 + 301, y=Y_REF + 205, width=20, height=20)
 
-    change_captcha(captcha_display,captcha_entry)
-
-    button_signup = Button(frame, bd=0, text='Sign up', bg='#B3E982', fg='#283556', activebackground='#BCEC91',
-                          activeforeground='#283556', font=("Lato", 10, 'bold'), cursor='hand2', command=check_captcha)
-    button_signup.place(x=X_REF2+50, y=Y_REF + 360+21, width=250, height=27)
+    change_captcha(captcha_display, captcha_entry)
 
     l_otp_n = Label(frame, text='One time password', font=font, bg=color_bg, anchor='w', fg='grey')
     l_otp_n.place(x=X_REF2, y=Y_REF + 250, width=145, height=25)
 
     otp_entry = Entry(frame, bg=color_bg, bd=1, relief=SOLID, font=('times', 20), justify=CENTER)
-    otp_entry.place(x=X_REF2 , y=Y_REF + 275, width=150, height=30)
+    otp_entry.place(x=X_REF2, y=Y_REF + 275, width=150, height=30)
 
     def otp():
+        otp_sent_label.config(text='Check your email for the OTP')
         otp_resend.place(x=X_REF2 + 151, y=Y_REF + 275, width=20, height=20)
         from threading import Thread
         Thread(target=timer).start()
         otp_send.destroy()
 
     def timer():
-        otp_resend.config(state=DISABLED)
-        for i in reversed(range(120)):
-            timer_label.config(text=f'Resend OTP in {i} seconds.')
-            sleep(1)
-            timer_label.update()
-        timer_label.config(text='')
-        otp_resend.config(state=NORMAL)
+        try:
+            otp_resend.config(state=DISABLED)
+            for i in reversed(range(120)):
+                timer_label.config(text=f'Resend OTP in {i} seconds.')
+                sleep(1)
+                timer_label.update()
+            timer_label.config(text='')
+            otp_resend.config(state=NORMAL)
+        except:
+            pass
 
+    otp_send = Button(frame, text='Send OTP', bd=1, relief=SOLID, font=('lato', 11), bg=color_bg, command=otp,
+                      activebackground=color_bg, cursor='hand2')
+    otp_send.place(x=X_REF2, y=Y_REF + 275, width=150, height=30)
 
-    otp_send = Button(frame, text='Send OTP',bd=1,relief=SOLID,font=('lato',11),bg=color_bg,command=otp,activebackground=color_bg)
-    otp_send.place(x=X_REF2 , y=Y_REF + 275, width=150, height=30)
+    otp_resend = Button(frame, text='↻', bd=0, relief=SOLID, font=('times', 15), bg=color_bg, activebackground=color_bg,
+                        fg='red', command=otp)
+    otp_sent_label = Label(frame, text='', bg=color_bg, fg='green')
+    otp_sent_label.place(x=X_REF2 + 171, y=Y_REF + 270, width=200, height=20)
+    timer_label = Label(frame, text='', bg=color_bg, fg='red')
+    timer_label.place(x=X_REF2 + 171, y=Y_REF + 290, width=200, height=20)
 
-    otp_resend = Button(frame, text='↻', bd=0, relief=SOLID, font=('times', 15), bg=color_bg, activebackground=color_bg, fg='red',command=otp)
+    varagree = IntVar()
 
-    timer_label = Label(frame, text='',bg=color_bg,fg='red')
-    timer_label.place(x=X_REF2 + 171, y=Y_REF + 275, width=200, height=20)
+    def agree():
+        if varagree.get() == 1:
+            button_signup.config(state=NORMAL, cursor='hand2')
+        else:
+            button_signup.config(state=DISABLED, cursor='exchange')
 
-    agree_termsandconditions = Checkbutton(frame, text = "I agree to the terms and conditions", onvalue = 1, offvalue = 0, height=5, width = 20,bg=color_bg,activebackground=color_bg)
+    agree_termsandconditions = Checkbutton(frame, text="I agree to the terms and conditions", height=5, width=20,
+                                           bg=color_bg, activebackground=color_bg, command=agree, variable=varagree)
     agree_termsandconditions.place(x=X_REF2, y=Y_REF + 325, width=200, height=20)
+
+    check_list_empties = {title: l_title, firstname: l_firstname, lastname: l_lastname, dob: l_dob,
+                         mobile: l_mobile, email: l_email, nation: l_nationality, address: l_address,
+                         pincode: l_pincode,state:l_pincode, kyc_combo: l_kyc,
+                         refno: l_refno, title_n: l_title_n, firstname_n: l_firstname_n, lastname_n: l_lastname_n,
+                         mobile_n: l_mobile_n,email_n:l_email_n,relationship:l_relationship_n}
+
+    def signup():
+        for item in check_list_empties.keys():
+            if item.get() == '':
+                check_list_empties[item].config(fg='red')
+                break
+
+        if check_dob(dob.get()) is True:
+            if check_mobilenumber(mobile.get()) is True:
+                if check_email(email.get()) is True:
+                    if check_captcha(captcha_entry.get()):
+                        print('all ok')
+
+
+
+
+
+
+
+
+    def all_back_to_grey(e):
+        for item in check_list_empties.values():
+            item.config(fg='grey')
+
+    for item in check_list_empties.keys():
+        item.bind("<FocusIn>", all_back_to_grey)
+
+    button_signup = Button(frame, bd=0, text='Sign up', bg='#B3E982', fg='#283556', activebackground='#BCEC91',
+                           activeforeground='#283556', font=("Lato", 10, 'bold'), cursor='hand2', command=signup)
+    button_signup.place(x=(w - X_REF2 / 2) - 250 / 2, y=Y_REF + 360 + 21, width=250, height=27)
+    button_signup.config(state=DISABLED, cursor='exchange')
