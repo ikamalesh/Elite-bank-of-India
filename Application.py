@@ -18,7 +18,7 @@ class App():
         logo_label.place(x=w / 2 - 300 / 2, y=h / 2 - 200)
         #progress_bar(frame_starter)
         frame_starter.destroy()
-        App.newaccount_window(window)
+        App.login_window(window)
 
     def login_window(self):
         frame_login = Frame(self, bg=color_bg)
@@ -83,7 +83,7 @@ class App():
         all_normal(button_list)
         button_list[' Personal Loans'].config(bg=color_bg,fg='#202225')
 
-    def main_window(self, name):
+    def main_window(self, name, acc_no):
         frame_main = Frame(self, bg=color_bg)
         frame_main.place(x=0, y=0, width=w, height=h)
 

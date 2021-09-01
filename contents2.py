@@ -207,22 +207,35 @@ def newaccount_contents(frame):
     otp_entry.place(x=X_REF2, y=Y_REF + 275, width=150, height=30)
 
     def otp_button():
-        global otp
-        otp = str(random.randint(1111, 9999))
-        Thread(target=lambda :send_otp(email.get(),otp)).start()
-        otp_sent_label.config(text='Check your email for the OTP')
-        otp_resend.place(x=X_REF2 + 151, y=Y_REF + 275, width=20, height=20)
-        timerthread = Thread(target=timer)
-        timerthread.start()
-        otp_send.destroy()
+        if check_captcha(captcha_entry.get()):
+            if check_email(email.get()):
+                otp_entry.delete(0, END)
+                global otp
+                otp = str(random.randint(1111, 9999))
+                Thread(target=lambda: send_otp(email.get(), otp)).start()
+                otp_sent_label.config(text='Check your email for the OTP')
+                otp_resend.place(x=X_REF2 + 151, y=Y_REF + 275, width=20, height=20)
+                timerthread = Thread(target=timer)
+                timerthread.start()
+                otp_send.destroy()
+            else:
+                l_email.config(fg='red')
+                notification_label.config(text='Invalid Email')
+        else:
+            notification_label.config(text='Invalid Captcha')
 
+    session_expired = False
     def timer():
+        global session_expired
         try:
             otp_resend.config(state=DISABLED)
             for i in reversed(range(120)):
                 timer_label.config(text=f'Resend OTP in {i} seconds.')
                 sleep(1)
                 timer_label.update()
+                if session_expired:
+                    break
+
             timer_label.config(text='')
             otp_resend.config(state=NORMAL)
         except:
@@ -258,13 +271,13 @@ def newaccount_contents(frame):
                           mobile_n: l_mobile_n, email_n: l_email_n, relationship: l_relationship_n}
 
     def signup():
-        print(otp)
         global all_checked
         all_checked = False
         for item in check_list_empties.keys():
             if item.get() == '':
                 check_list_empties[item].config(fg='red')
                 all_checked = False
+                notification_label.config(text='Invalid Entry')
                 break
             else:
                 all_checked = True
@@ -278,42 +291,100 @@ def newaccount_contents(frame):
                                     if check_email(email_n.get()):
                                         if otp == str(otp_entry.get()):
                                             operations.signup(
-                                                title.get(), firstname.get(), lastname.get(), dob.get(), accounttype.get(),
+                                                title.get(), firstname.get(), lastname.get(), dob.get(),
+                                                accounttype.get(),
                                                 mobile.get(), email.get(),
-                                                gender.get(), nation.get(), address.get(), pincode.get(), district.get(),
+                                                gender.get(), nation.get(), address.get(), pincode.get(),
+                                                district.get(),
                                                 state.get(), kyc_combo.get(), refno.get(),
                                                 filename, title_n.get(), firstname_n.get(), lastname_n.get(),
                                                 mobile_n.get(), email_n.get(), relationship.get()
                                             )
+                                            while True:
+                                                if operations.upload_success:
+                                                    clear_all_entries()
+                                                    break
+                                                else:
+                                                    pass
                                         else:
                                             otp_sent_label.config(text='Incorrect OTP, Try again')
                                     else:
                                         l_email_n.config(fg='red')
+                                        notification_label.config(text='Invalid Email')
                                 else:
                                     l_mobile_n.config(fg='red')
+                                    notification_label.config(text='Invalid Email')
                             elif captcha_entry.get() == '':
                                 pass
                             else:
                                 change_captcha(captcha_display, captcha_entry)
                         else:
                             l_gender.config('red')
+                            notification_label.config(text='Invalid Email')
                     else:
                         l_email.config(fg='red')
+                        notification_label.config(text='Invalid Email')
                 else:
                     l_mobile.config(fg='red')
+                    notification_label.config(text='Invalid Email')
             else:
                 l_dob.config(fg='red')
+                notification_label.config(text='Invalid Email')
         else:
             print('NOT ALL CHECKED')
 
     def all_back_to_grey(e):
         for item in check_list_empties.values():
             item.config(fg='grey')
+        notification_label.config(text='')
+
+    def clear_all_entries():
+        title.set("")
+        firstname.delete(0,END)
+        lastname.delete(0,END)
+        dob.delete(0,END)
+        accounttype.set('Savings')
+        mobile.delete(0,END)
+        email.delete(0,END)
+        gender.set('None')
+        #nation.set('None')
+        nation.set('')
+        address.delete(0,END)
+        pincode.delete(0,END)
+        district.config(state=NORMAL)
+        district.delete(0,END)
+        district.config(state=NORMAL)
+        state.config(state=NORMAL)
+        state.delete(0,END)
+        state.config(state=NORMAL)
+        kyc_combo.set('')
+        refno.delete(0,END)
+        title_n.set("")
+        firstname_n.delete(0,END)
+        lastname_n.delete(0,END)
+        mobile_n.delete(0,END)
+        email_n.delete(0,END)
+        relationship.set("")
+        change_captcha(captcha_display, captcha_entry)
+        otp_entry.delete(0,END)
+        otp_send = Button(frame, text='Send OTP', bd=1, relief=SOLID, font=('lato', 11), bg=color_bg,command=otp_button,activebackground=color_bg, cursor='hand2')
+        otp_send.place(x=X_REF2, y=Y_REF + 275, width=150, height=30)
+        otp_resend.place(x=X_REF2 + 151, y=Y_REF + 275+150, width=20, height=20)
+        otp_sent_label.config(text='')
+        global session_expired
+        session_expired = True
+
+
 
     for item in check_list_empties.keys():
         item.bind("<FocusIn>", all_back_to_grey)
+    captcha_entry.bind("<FocusIn>", all_back_to_grey)
+    captcha_entry.bind("<Key>", all_back_to_grey)
 
     button_signup = Button(frame, bd=0, text='Sign up', bg='#B3E982', fg='#283556', activebackground='#BCEC91',
                            activeforeground='#283556', font=("Lato", 10, 'bold'), cursor='hand2', command=signup)
     button_signup.place(x=(w - X_REF2 / 2) - 250 / 2, y=Y_REF + 360 + 21, width=250, height=27)
     button_signup.config(state=DISABLED, cursor='exchange')
+
+    notification_label = Label(frame, text='', bg=color_bg, fg='red', anchor='e', font=('lato', 12))
+    notification_label.place(x=w - 210, y=35, width=200, height=30)

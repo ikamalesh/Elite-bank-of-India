@@ -14,10 +14,15 @@ firebase = pyrebase.initialize_app(config)
 
 db = firebase.database()
 auth = firebase.auth()
+
 storage = firebase.storage()
 user = auth.sign_in_anonymous()
 #print(user['idToken'])
 
+account_number = 'HB23961'
 
-f = storage.child('account_requests').child('HB23961').get_url(token='')
-print(f)
+fetched_data = dict(db.child('account_requests').child('HB23961').get().val())
+
+
+db.child('active_users').child(account_number).set(fetched_data)
+db.child('account_requests').child(account_number).remove()
