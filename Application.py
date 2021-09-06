@@ -18,7 +18,7 @@ class App():
         logo_label.place(x=w / 2 - 300 / 2, y=h / 2 - 200)
         #progress_bar(frame_starter)
         frame_starter.destroy()
-        App.login_window(window)
+        App.main_window(window,name='Kamalesh S',acc_no="HB23961")
 
     def login_window(self):
         frame_login = Frame(self, bg=color_bg)
@@ -38,7 +38,7 @@ class App():
     def home():
         print('in home page')
 
-    def profile(self,position):
+    def profile(self,position,name):
         all_normal(button_list)
         button_list[' Profile'].config(bg=color_bg,fg='#202225')
 
@@ -46,9 +46,13 @@ class App():
         frame1.place(x=230+position, y=30, width=w - 230, height=h - 30)
 
         global profile_label, profile_img
-        profile_img = logo(width=150, height=150, file='female.png',resize=True)
+        profile_img = logo(width=150, height=150, file='male.png',resize=True)
         profile_label = Label(frame1, image=profile_img, bd=0, bg=color_bg)
         profile_label.place(x=(w-230)/2-(150/2), y=h / 2 - 250)
+
+        name_label = Label(frame1, text=name, font=('lato',25,"bold"),bg=color_bg)
+        name_label.place(width=400, height=40,x=(w-230)/2-(400/2),y=h / 2-50)
+
 
     def check_balance(self, position):
         all_normal(button_list)
