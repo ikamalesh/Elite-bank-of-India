@@ -64,7 +64,7 @@ def login_contents(frame):
     button_newaccount.place(width=250, height=25, x=w / 2 - 250 / 2, y=Y_REF + 450 - 230)
 
 
-def main_contents(frame, frame1, name):
+def main_contents(frame, frame1, data):
     global button_list
     topbar_contents = {'About': '',
                        'Settings': '',
@@ -74,7 +74,7 @@ def main_contents(frame, frame1, name):
     topbar(frame, topbar_contents)
 
     sidebar_contents = {
-        ' Profile': lambda: App.profile(frame,0,name=name),
+        ' Profile': lambda: App.profile(frame,data=data),
         ' Check Balance': lambda: App.check_balance(frame,0),
         ' View Transactions': App.view_transactions,
         ' Online Transfer': App.online_transfer,
@@ -84,10 +84,10 @@ def main_contents(frame, frame1, name):
         ' Personal Loans': App.personal_loans
     }
     button_list = sidebar(frame1, sidebar_contents)
-    App.profile(frame,0,name)
+    App.profile(frame,data)
     Label(frame, text='Welcome', font=("Lato", 10,), bg=color_bg, anchor='w').place(x=90, y=50, width=100, height=20)
-    Label(frame, text=name.title(), font=("Lato", 12, 'italic'), bg=color_bg, anchor='w', fg='purple').place(x=90, y=75,
-                                                                                                             width=150,
+    Label(frame, text=data['firstname'].title(), font=("Lato", 12, 'italic'), bg=color_bg, anchor='w', fg='purple').place(x=90, y=75,
+                                                                                                             width=140,
                                                                                                              height=20)
 
     # 90

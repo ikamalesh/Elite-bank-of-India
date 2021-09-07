@@ -22,8 +22,8 @@ color_bg = 'white'
 color_logogreen = '#175C4C'
 color_orange = '#F29765'
 color_darkblack = '#232425'
-color_topbar = "#393C43"  # '#5A86BF'
-
+color_topbar = "#202225"  # '#5A86BF'
+##202225 dark
 
 def logo(width, height, file, resize=False):
     global logo_img

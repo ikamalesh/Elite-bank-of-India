@@ -1,3 +1,4 @@
+import Application
 from constants import *
 import random
 from Application import App
@@ -57,9 +58,11 @@ def signin(frame, accno, password):
     if email != None:
         try:
             auth.sign_in_with_email_and_password(email, password)
-            name = db.child('active_users').child(accno).child('firstname').get().val()
-            App.main_window(frame,name=name,acc_no=accno)
+            data = dict(db.child('active_users').child(accno).get().val())
+            print(data)
+            App.main_window(frame,data=data)
         except:
             print('Wrong pass')
     else:
         print('Wrong email')
+
