@@ -13,11 +13,12 @@ def login_contents(frame):
     topbar(frame, topbar_contents)
 
     global img1, imglabel1
-    img1 = logo(width=300, height=150, file='bestbanks1.png', resize=True)
+    img1 = logo(width=400, height=200, file='ebi/wholecrop.png', resize=False)
     imglabel1 = Label(frame, image=img1, bd=0, bg=color_bg)
-    imglabel1.place(x=w / 2 - 150, y=110)
+    #old imglabel1.place(x=w / 2 - 150, y=110)
+    imglabel1.place(x=w / 2 - 250, y=50)
 
-    Y_REF = 300
+    Y_REF = 350
 
     l1 = Label(frame, text='Account number', font=("Lato", 10), bd=0, bg=color_bg, fg=color_silver, anchor='w')
     l1.place(x=w / 2 - 250 / 2, y=Y_REF - 25, width=250, height=25)
@@ -85,13 +86,15 @@ def main_contents(frame, frame1, data):
     }
     button_list = sidebar(frame1, sidebar_contents)
     App.profile(frame,data)
+
+    global img3, imglabel3
+    img3 = logo(width=70, height=70, file='ebi/logo.png', resize=True)
+    imglabel3 = Label(frame, image=img3, bd=0, bg=color_bg)
+    imglabel3.place(x=10, y=40)
+
     Label(frame, text='Welcome', font=("Lato", 10,), bg=color_bg, anchor='w').place(x=90, y=50, width=100, height=20)
     Label(frame, text=data['firstname'].title(), font=("Lato", 12, 'italic'), bg=color_bg, anchor='w', fg='purple').place(x=90, y=75,
                                                                                                              width=140,
                                                                                                              height=20)
 
-    # 90
-    global img3, imglabel3
-    img3 = logo(width=75, height=75, file='bestbanks3.png', resize=True)
-    imglabel3 = Label(frame, image=img3, bd=0, bg=color_bg)
-    imglabel3.place(x=5, y=40)
+

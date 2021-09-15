@@ -43,7 +43,7 @@ def progress_bar(frame):
 
     progress = Progressbar(frame, orient=HORIZONTAL,
                            length=300, mode='determinate', style="green.Horizontal.TProgressbar")
-    progress.place(x=w / 2 - 150, y=400, height=15)
+    progress.place(x=w / 2 - 150, y=440, height=15)
     bar_position = 0
 
     for i in range(0, 105):

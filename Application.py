@@ -10,23 +10,24 @@ class App():
     def __init__(self, window):
         window.title("The Heiman Bank")
         global logo_label, logo_img
-        frame_starter = Frame(window, bg=color_topbar)
+        frame_starter = Frame(window, bg=color_bg)
         frame_starter.place(x=0, y=0, width=w, height=h)
-        logo_img = logo(300, height=300, file='white.png')
-        logo_label = Label(frame_starter, image=logo_img, bd=0, bg=color_topbar)
-        logo_label.place(x=w / 2 - 300 / 2, y=h / 2 - 200)
-        # progress_bar(frame_starter)
+        logo_img = logo(300, height=300, file='ebi/wholecrop.png')
+        logo_label = Label(frame_starter, image=logo_img, bd=0, bg=color_bg)
+        logo_label.place(x=w / 2 - 250, y= 160)
+        #progress_bar(frame_starter)
         frame_starter.destroy()
-        App.main_window(window, {'account_number': 'HB23961', 'account_type': 'Savings',
-                                 'address': '9/3, Rajeshwari Nagar, Bagalur road, Hosur', 'district': 'Krishnagiri',
-                                 'dob': '11/04/2001', 'email': 'srikamalesh.2001@gmail.com', 'firstname': 'Kamalesh',
-                                 'gender': 'Male', 'kyc_ref': 'INIPK1034D', 'kyc_type': ' PAN Card',
-                                 'kyc_upload': 'C:/Users/Kamal/OneDrive/Documents scanned copy/PAN.jpeg',
-                                 'lastname': 'S', 'mobile': '8667224209', 'nationality': ' India',
-                                 'nom_email': 'sri2003sg@gmail.com', 'nom_lastname': 'R', 'nom_mobile': '9629859337',
-                                 'nom_relatinoship': ' Mother', 'nom_title': ' Mrs', 'non_firstname': 'Sri Priya',
-                                 'pincode': '635109', 'state': 'Tamil Nadu', 'title': ' Mr'}
-                        )
+        App.login_window(window)
+        #App.main_window(window, {'account_number': 'HB23961', 'account_type': 'Savings',
+        #                        'address': '9/3, Rajeshwari Nagar, Bagalur road, Hosur', 'district': 'Krishnagiri',
+        #                        'dob': '11/04/2001', 'email': 'srikamalesh.2001@gmail.com', 'firstname': 'Kamalesh',
+        #                        'gender': 'Male', 'kyc_ref': 'INIPK1034D', 'kyc_type': ' PAN Card',
+        #                         'kyc_upload': 'C:/Users/Kamal/OneDrive/Documents scanned copy/PAN.jpeg',
+        #                         'lastname': 'S', 'mobile': '8667224209', 'nationality': ' India',
+        #                         'nom_email': 'sri2003sg@gmail.com', 'nom_lastname': 'R', 'nom_mobile': '9629859337',
+        #                         'nom_relatinoship': ' Mother', 'nom_title': ' Mrs', 'non_firstname': 'Sri Priya',
+        #                         'pincode': '635109', 'state': 'Tamil Nadu', 'title': ' Mr'}
+        #                )
 
     def login_window(self):
         frame_login = Frame(self, bg=color_bg)

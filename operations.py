@@ -32,7 +32,6 @@ def signup(title, firstname, lastname, dob, account_type, mobile, email, gender,
         "kyc_type": kyc_type,
         "kyc_ref": kyc_ref,
         "kyc_upload": kyc_path,
-
         "nom_title":nom_title,
         "non_firstname":nom_firstname,
         "nom_lastname":nom_lastname,
