@@ -1,6 +1,7 @@
 import contents
 import contents2
 from constants import *
+import operations
 
 # Path to asset files for this GUI window.
 ASSETS_PATH = Path(__file__).resolve().parent / "assets"
@@ -8,7 +9,7 @@ ASSETS_PATH = Path(__file__).resolve().parent / "assets"
 
 class App():
     def __init__(self, window):
-        window.title("The Heiman Bank")
+        window.title("Elite Bank of India")
         global logo_label, logo_img
         frame_starter = Frame(window, bg=color_bg)
         frame_starter.place(x=0, y=0, width=w, height=h)
@@ -17,17 +18,11 @@ class App():
         logo_label.place(x=w / 2 - 250, y= 160)
         #progress_bar(frame_starter)
         frame_starter.destroy()
-        App.login_window(window)
-        #App.main_window(window, {'account_number': 'HB23961', 'account_type': 'Savings',
-        #                        'address': '9/3, Rajeshwari Nagar, Bagalur road, Hosur', 'district': 'Krishnagiri',
-        #                        'dob': '11/04/2001', 'email': 'srikamalesh.2001@gmail.com', 'firstname': 'Kamalesh',
-        #                        'gender': 'Male', 'kyc_ref': 'INIPK1034D', 'kyc_type': ' PAN Card',
-        #                         'kyc_upload': 'C:/Users/Kamal/OneDrive/Documents scanned copy/PAN.jpeg',
-        #                         'lastname': 'S', 'mobile': '8667224209', 'nationality': ' India',
-        #                         'nom_email': 'sri2003sg@gmail.com', 'nom_lastname': 'R', 'nom_mobile': '9629859337',
-        #                         'nom_relatinoship': ' Mother', 'nom_title': ' Mrs', 'non_firstname': 'Sri Priya',
-        #                         'pincode': '635109', 'state': 'Tamil Nadu', 'title': ' Mr'}
-        #                )
+        #App.login_window(window)
+        data = dict(operations.db.child('active_users').child('HB23961').get().val())
+
+        App.main_window(window, data
+                        )
 
     def login_window(self):
         frame_login = Frame(self, bg=color_bg)
@@ -36,10 +31,12 @@ class App():
         contents.login_contents(frame=window)
 
     def newaccount_window(self):
-        self.title("The Heiman Bank | New Account")
+        self.title("Elite Bank of India | New Account")
         frame_new = Frame(self, bg=color_bg)
         frame_new.place(x=0, y=0, width=w, height=h)
         contents2.newaccount_contents(frame=frame_new)
+
+
 
     def about():
         print('in about page')

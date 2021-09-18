@@ -65,7 +65,7 @@ def login_contents(frame):
     button_newaccount.place(width=250, height=25, x=w / 2 - 250 / 2, y=Y_REF + 450 - 230)
 
 
-def main_contents(frame, frame1, data):
+def main_contents(frame, framel, framer, data):
     global button_list
     topbar_contents = {'About': '',
                        'Settings': '',
@@ -84,7 +84,7 @@ def main_contents(frame, frame1, data):
         ' Investments': App.investments,
         ' Personal Loans': App.personal_loans
     }
-    button_list = sidebar(frame1, sidebar_contents)
+    button_list = sidebar(framel, sidebar_contents)
     App.profile(frame,data)
 
     global img3, imglabel3

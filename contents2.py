@@ -7,7 +7,7 @@ def newaccount_contents(frame):
     img2 = logo(width=200, height=100, file='ebi/logo.png', resize=True)
     #imglabel2 = Label(frame, image=img2, bd=0, bg=color_bg)
     #imglabel2.place(x=10, y=30)
-    topbar_contents = {'< Back': frame.destroy, }
+    topbar_contents = {'< Back': frame.destroy, 'Help':''}
     topbar(frame, topbar_contents)
 
     def pincode_event(e):
