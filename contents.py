@@ -88,6 +88,7 @@ def main_contents(frame, framel, data):
     imglabel3.place(x=10, y=40)
 
     Label(frame, text='Welcome', font=("Lato", 10,), bg=color_bg, anchor='w').place(x=90, y=50, width=100, height=20)
-    Label(frame, text=data['firstname'].title(), font=("Lato", 12, 'italic'), bg=color_bg, anchor='w', fg='purple').place(x=90, y=75, width=140, height=20)
+    Label(frame, text=data['firstname'].title(), font=("Lato", 12, 'italic'), bg=color_bg, anchor='w', fg='purple').place(x=90, y=75, width=140, 
+    height=20)
 
 
