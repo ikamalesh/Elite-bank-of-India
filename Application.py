@@ -113,7 +113,7 @@ class App():
         frame_left = Frame(self, bg='#202225', bd=0)  # bg=color_logogreen)
         frame_left.place(x=0, y=120, width=230, height=h - 120)
 
-        contents.main_contents(frame=frame_main, frame1=frame_left, data=data)
+        contents.main_contents(frame=frame_main, framel=frame_left, data=data)
 
 
 if __name__ == '__main__':

@@ -51,21 +51,16 @@ def login_contents(frame):
         x=w / 2 - 260 / 2,
         y=Y_REF + 390 - 230, width=260,
         height=20)
-    Label(frame, text='or', fg=color_silver, bg=color_bg, font=("Lato", 11,)).place(x=w / 2 - 20 / 2,
-                                                                                    y=Y_REF + 393 - 230, width=20,
-                                                                                    height=20)
+    Label(frame, text='or', fg=color_silver, bg=color_bg, font=("Lato", 11,)).place(x=w / 2 - 20 / 2, y=Y_REF + 393 - 230, width=20,height=20)
 
-    button_forget = Button(frame, text='Forgot your password?', font=("Lato", 10,), bd=0, bg=color_bg,
-                           activebackground=color_bg, fg='#3A89ED', cursor='hand2')
+    button_forget = Button(frame, text='Forgot your password?', font=("Lato", 10,), bd=0, bg=color_bg, activebackground=color_bg, fg='#3A89ED', cursor='hand2')
     button_forget.place(width=250, height=25, x=w / 2 - 250 / 2, y=Y_REF + 420 - 230)
 
-    button_newaccount = Button(frame, text='Create a new account', font=("Lato", 10,), bd=0, bg=color_bg,
-                               activebackground=color_bg, fg='#3A89ED', command=lambda: App.newaccount_window(frame),
-                               cursor='hand2')
+    button_newaccount = Button(frame, text='Create a new account', font=("Lato", 10,), bd=0, bg=color_bg, activebackground=color_bg, fg='#3A89ED', command=lambda: App.newaccount_window(frame),cursor='hand2')
     button_newaccount.place(width=250, height=25, x=w / 2 - 250 / 2, y=Y_REF + 450 - 230)
 
 
-def main_contents(frame, framel, framer, data):
+def main_contents(frame, framel, data):
     global button_list
     topbar_contents = {'About': '',
                        'Settings': '',
@@ -93,8 +88,6 @@ def main_contents(frame, framel, framer, data):
     imglabel3.place(x=10, y=40)
 
     Label(frame, text='Welcome', font=("Lato", 10,), bg=color_bg, anchor='w').place(x=90, y=50, width=100, height=20)
-    Label(frame, text=data['firstname'].title(), font=("Lato", 12, 'italic'), bg=color_bg, anchor='w', fg='purple').place(x=90, y=75,
-                                                                                                             width=140,
-                                                                                                             height=20)
+    Label(frame, text=data['firstname'].title(), font=("Lato", 12, 'italic'), bg=color_bg, anchor='w', fg='purple').place(x=90, y=75, width=140, height=20)
 
 
