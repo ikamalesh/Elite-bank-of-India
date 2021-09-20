@@ -1,6 +1,6 @@
 import random
 from assets import mailer
-from time import sleep
+from time import sleep, strftime
 from pathlib import Path
 from tkinter.ttk import Progressbar, Style, Combobox
 from tkinter import *
@@ -10,6 +10,8 @@ import json
 import pyrebase
 import csv
 from threading import Thread
+
+
 
 button_list = {}
 
@@ -104,7 +106,6 @@ def change_captcha(label, entry):
     p = random.choice(capcha_list)
     label.config(text=p)
     captcha_text = p
-
 
 def check_captcha(captcha_entry):
     global captcha_text

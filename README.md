@@ -1,9 +1,2 @@
-## Firebase banking system
-  
-  CHECK BALANCE<br>
-  VIEW TRANSACTIONS <br>
-  ONLINE TRANSFER<br>
-  DEPOSIT<br>
-  WITHDRAW<br>
-  INVESTMENTS<br>
-  PERSONAL LOANS<br>
+# Elite Bank of India
+<img src='assets/whole.png'>

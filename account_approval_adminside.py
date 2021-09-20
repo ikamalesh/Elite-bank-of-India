@@ -1,4 +1,5 @@
 import pyrebase
+from time import strftime
 
 config = {
     'apiKey': "AIzaSyB2hssgQl3fFauUIPtVGz4mjBiXomia1Tc",
@@ -19,10 +20,11 @@ storage = firebase.storage()
 user = auth.sign_in_anonymous()
 #print(user['idToken'])
 
-account_number = 'HB23961'
+account_number = 'HB88334'
 
-fetched_data = dict(db.child('account_requests').child('HB23961').get().val())
+fetched_data = dict(db.child('account_requests').child(account_number).get().val())
 
-
+fetched_data['acc_activated_dt'] = strftime("%Y-%m-%d %H:%M:%S")
+print(fetched_data)
 db.child('active_users').child(account_number).set(fetched_data)
 db.child('account_requests').child(account_number).remove()

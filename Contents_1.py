@@ -60,7 +60,7 @@ def login_contents(frame):
     button_newaccount.place(width=250, height=25, x=w / 2 - 250 / 2, y=Y_REF + 450 - 230)
 
 
-def main_contents(frame, framel, data):
+def main_contents(frame, framel, accno):
     global button_list
     topbar_contents = {'About': '',
                        'Settings': '',
@@ -70,7 +70,7 @@ def main_contents(frame, framel, data):
     topbar(frame, topbar_contents)
 
     sidebar_contents = {
-        ' Profile': lambda: App.profile(frame,data=data),
+        ' Profile': lambda: App.profile(frame,data=operations.profile_datagenerator(accno)),
         ' Check Balance': lambda: App.check_balance(frame,0),
         ' View Transactions': App.view_transactions,
         ' Online Transfer': App.online_transfer,
@@ -80,7 +80,7 @@ def main_contents(frame, framel, data):
         ' Personal Loans': App.personal_loans
     }
     button_list = sidebar(framel, sidebar_contents)
-    App.profile(frame,data)
+    App.profile(frame,data=operations.profile_datagenerator(accno))
 
     global img3, imglabel3
     img3 = logo(width=70, height=70, file='logo.png', resize=True)
@@ -88,6 +88,6 @@ def main_contents(frame, framel, data):
     imglabel3.place(x=10, y=40)
 
     Label(frame, text='Welcome', font=("Lato", 10,), bg=color_bg, anchor='w').place(x=90, y=50, width=100, height=20)
-    Label(frame, text=data['firstname'].title(), font=("Lato", 12, 'italic'), bg=color_bg, anchor='w', fg='purple').place(x=90, y=75, width=140,  height=20)
+    Label(frame, text=operations.profile_datagenerator(accno)['firstname'].title(), font=("Lato", 12, 'italic'), bg=color_bg, anchor='w', fg='purple').place(x=90, y=75, width=140,  height=20)
 
 

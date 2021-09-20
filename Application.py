@@ -18,9 +18,9 @@ class App():
         logo_label.place(x=w / 2 - 250, y= 160)
         #progress_bar(frame_starter)
         frame_starter.destroy()
-        data = dict(operations.db.child('active_users').child('HB23961').get().val()) #Hack
-        #App.login_window(window)
-        App.main_window(window, data)
+        #data = dict(operations.db.child('active_users').child('HB23961').get().val()) #Hack
+        App.login_window(window)
+        #App.main_window(window, data)
 
 
     def login_window(self):
@@ -100,7 +100,7 @@ class App():
         all_normal(button_list)
         button_list[' Personal Loans'].config(bg=color_bg, fg='#202225')
 
-    def main_window(self, data):
+    def main_window(self, accno):
         frame_main = Frame(self, bg=color_bg)
         frame_main.place(x=0, y=0, width=w, height=h)
 
@@ -110,7 +110,7 @@ class App():
         frame_left = Frame(self, bg='#202225', bd=0)  # bg=color_logogreen)
         frame_left.place(x=0, y=120, width=230, height=h - 120)
 
-        Contents_1.main_contents(frame=frame_main, framel=frame_left, data=data)
+        Contents_1.main_contents(frame=frame_main, framel=frame_left, accno=accno)
 
 
 if __name__ == '__main__':

@@ -19,5 +19,5 @@ user = auth.sign_in_anonymous()
 #print(user['idToken'])
 
 
-f = storage.child('account_requests').child('HB50398').get_url(token='')
+f = storage.child('documents').child('HB58487').get_url(token="admin")
 print(f)
