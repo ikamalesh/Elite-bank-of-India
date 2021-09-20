@@ -1,9 +1,12 @@
 {
-    "apiKey": "AIzaSyB2hssgQl3fFauUIPtVGz4mjBiXomia1Tc",
-    "authDomain": "pyrebase-realtimedb.firebaseapp.com",
-    "databaseURL": "https://pyrebase-realtimedb-default-rtdb.asia-southeast1.firebasedatabase.app",
-    "projectId": "pyrebase-realtimedb",
-    "storageBucket": "pyrebase-realtimedb.appspot.com",
-    "messagingSenderId": "729326840647",
-    "appId": "1:729326840647:web:edfb9dc037fc352959fa62"
+"apiKey": "AIzaSyDtS0lY-b32y35QGm-zx-BDp6ZFFbr7rO0",
+"authDomain": "elite-bank-of-india.firebaseapp.com",
+"databaseURL": "https://elite-bank-of-india-default-rtdb.asia-southeast1.firebasedatabase.app",
+"projectId": "elite-bank-of-india",
+"storageBucket": "elite-bank-of-india.appspot.com",
+"messagingSenderId": "611024657796",
+"appId": "1:611024657796:web:050433d62076e0351651d1",
+"measurementId": "G-LE5X4T17WZ"
 }
+
+

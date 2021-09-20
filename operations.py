@@ -59,14 +59,14 @@ def signup(title, firstname, lastname, dob, account_type, mobile, email, gender,
 def signin(frame, accno, password):
     email = db.child('active_users').child(accno).child('email').get().val()
     if email != None:
-        #try:
-        auth.sign_in_with_email_and_password(email, password)
-        #data = dict(db.child('active_users').child(accno).get().val())
-        #print(data)
-        App.main_window(frame,accno=accno)
-        print(accno)
-       #except:
-            #print('Wrong pass')
+        try:
+           auth.sign_in_with_email_and_password(email, password)
+           #data = dict(db.child('active_users').child(accno).get().val())
+           #print(data)
+           App.main_window(frame,accno=accno)
+           print(accno)
+        except:
+           print('Wrong pass')
     else:
         print('Wrong email')
 
