@@ -1,7 +1,7 @@
 import operations
 from Application import *
 
-global button_list
+#global button_list
 
 
 def login_contents(frame):
@@ -13,7 +13,7 @@ def login_contents(frame):
     topbar(frame, topbar_contents)
 
     global img1, imglabel1
-    img1 = logo(width=400, height=200, file='ebi/wholecrop.png', resize=False)
+    img1 = logo(width=400, height=200, file='wholecrop.png', resize=False)
     imglabel1 = Label(frame, image=img1, bd=0, bg=color_bg)
     #old imglabel1.place(x=w / 2 - 150, y=110)
     imglabel1.place(x=w / 2 - 250, y=50)
@@ -83,7 +83,7 @@ def main_contents(frame, framel, data):
     App.profile(frame,data)
 
     global img3, imglabel3
-    img3 = logo(width=70, height=70, file='ebi/logo.png', resize=True)
+    img3 = logo(width=70, height=70, file='logo.png', resize=True)
     imglabel3 = Label(frame, image=img3, bd=0, bg=color_bg)
     imglabel3.place(x=10, y=40)
 

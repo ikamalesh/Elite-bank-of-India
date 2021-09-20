@@ -1,5 +1,5 @@
 import random
-import ezgmail
+from assets import mailer
 from time import sleep
 from pathlib import Path
 from tkinter.ttk import Progressbar, Style, Combobox
@@ -27,7 +27,7 @@ color_topbar = "#202225"  # '#5A86BF'
 
 def logo(width, height, file, resize=False):
     global logo_img
-    logo_img = Image.open(ASSETS_PATH / f"2/{file}")
+    logo_img = Image.open(ASSETS_PATH / f"{file}")
     if resize == True:
         logo_img = logo_img.resize((width, height))
     else:
@@ -60,7 +60,7 @@ def topbar(frame, contents):
     x_ref = 10
     for items in contents:
         b = Button(frame, text=items, command=contents[items], bg=color_topbar, activebackground=color_topbar,
-                   font=("Lato", 10,), bd=0, relief=SOLID, fg='white')  # cursor='hand2',
+                   font=("Lato", 10,), bd=0, relief=SOLID, fg='white',activeforeground='white')  # cursor='hand2',
         b.place(x=x_ref, y=0, width=50, height=30)
 
         x_ref += 60
@@ -157,4 +157,4 @@ def check_dob(dob_entry):
         return False
 
 def send_otp(emailid,otp):
-    ezgmail.send(emailid,'Verification',f'Your OTP - {otp}')
+    mailer.send(emailid,'Verification',f'Your OTP - {otp}')

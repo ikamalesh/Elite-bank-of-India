@@ -1,42 +1,39 @@
-import contents
-import contents2
-from constants import *
+import Contents_1
+import Contents_2
+from CONST import *
 import operations
 
 # Path to asset files for this GUI window.
 ASSETS_PATH = Path(__file__).resolve().parent / "assets"
 
 
-class App():
+class App():    
     def __init__(self, window):
         window.title("Elite Bank of India")
         global logo_label, logo_img
         frame_starter = Frame(window, bg=color_bg)
         frame_starter.place(x=0, y=0, width=w, height=h)
-        logo_img = logo(300, height=300, file='ebi/wholecrop.png')
+        logo_img = logo(300, height=300, file='wholecrop.png')
         logo_label = Label(frame_starter, image=logo_img, bd=0, bg=color_bg)
         logo_label.place(x=w / 2 - 250, y= 160)
         #progress_bar(frame_starter)
         frame_starter.destroy()
+        data = dict(operations.db.child('active_users').child('HB23961').get().val()) #Hack
         #App.login_window(window)
-        data = dict(operations.db.child('active_users').child('HB23961').get().val())
+        App.main_window(window, data)
 
-        App.main_window(window, data
-                        )
 
     def login_window(self):
         frame_login = Frame(self, bg=color_bg)
         frame_login.place(x=0, y=0, width=w, height=h)
-        contents.login_contents(frame=window)
-        contents.login_contents(frame=window)
+        Contents_1.login_contents(frame=window)
+        Contents_1.login_contents(frame=window)
 
     def newaccount_window(self):
         self.title("Elite Bank of India | New Account")
         frame_new = Frame(self, bg=color_bg)
         frame_new.place(x=0, y=0, width=w, height=h)
-        contents2.newaccount_contents(frame=frame_new)
-
-
+        Contents_2.newaccount_contents(frame=frame_new)
 
     def about():
         print('in about page')
@@ -113,7 +110,7 @@ class App():
         frame_left = Frame(self, bg='#202225', bd=0)  # bg=color_logogreen)
         frame_left.place(x=0, y=120, width=230, height=h - 120)
 
-        contents.main_contents(frame=frame_main, framel=frame_left, data=data)
+        Contents_1.main_contents(frame=frame_main, framel=frame_left, data=data)
 
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 import Application
-from constants import *
+from CONST import *
 import random
 from Application import App
 

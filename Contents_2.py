@@ -1,10 +1,10 @@
 import operations
 from Application import *
-from constants import *
+from CONST import *
 
 def newaccount_contents(frame):
     global img2, imglabel2
-    img2 = logo(width=200, height=100, file='ebi/logo.png', resize=True)
+    img2 = logo(width=200, height=100, file='logo.png', resize=True)
     #imglabel2 = Label(frame, image=img2, bd=0, bg=color_bg)
     #imglabel2.place(x=10, y=30)
     topbar_contents = {'< Back': frame.destroy, 'Help':''}
